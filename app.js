@@ -10,7 +10,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 //const bodyParser = require("body-parser");
 const axios = require("axios");
-var debug = require("debug")("personalapp:server");
+const debug = require("debug")("personalapp:server");
 
 // Now we create the server
 const app = express();
@@ -53,7 +53,14 @@ app.get("/", (req, res) => {
 });
 
 app.get("/demo", 
-        function (req, res){res.render("demo");});
+         function (req, res){
+                res.render("demo");
+          }
+       );
+
+app.get("/testing", (req,res) => {
+     res.render("testing")
+})
 
 app.get("/about", (request, response) => {
   response.render("about");
