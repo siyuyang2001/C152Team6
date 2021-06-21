@@ -52,7 +52,7 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/demo", 
+app.get("/demo",
          function (req, res){
                 res.render("demo");
           }
@@ -78,11 +78,12 @@ app.post("/showformdata", (request,response) => {
 
 
 
+
 // this example shows how to get the current US covid data
 // and send it back to the browser in raw JSON form, see
 // https://covidtracking.com/data/api
 // for all of the kinds of data you can get
-app.get("/c19", 
+app.get("/c19",
   async (req,res,next) => {
     try {
       const url = "https://covidtracking.com/api/v1/us/current.json"
