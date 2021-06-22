@@ -1,0 +1,26 @@
+<%- include('bootheader') -%>
+<%- include('menubar') -%>
+<div class="row">
+<div class="jumbotron">
+        <h1>What do you want to search?</h1>
+</div>
+
+  <div class="col">
+<h3>From fresh fruit to branded food....<h3>
+  <img width="450" src="http://www.sunriseseniorliving.com/~/media/blog-images/march-2015/6-diseases-that-proper-nutrition-prevents_379_40044310_0_14113110_728.jpg">
+</div>
+  <div class="col">
+<form method="post" action="/getFoodData">
+    <h2>Search the food in one word:</h2>
+    <input type="text" name="food"><br><br>
+    <input type="submit" value="Search">
+
+
+
+
+</form>
+
+</div>
+</div>
+
+<%- include('bootfooter') -%>

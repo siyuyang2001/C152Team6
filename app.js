@@ -108,6 +108,42 @@ app.get("/omelet",
     }
 })
 
+app.get('/food', (req,res) => {
+  res.render('food')
+})
+function l(data){
+  return data.length
+}
+app.post("/getFoodData",
+  async (req,res,next) => {
+    try {
+      const food = req.body.food
+      const url = "https://api.nal.usda.gov/fdc/v1/foods/search?query="+food+
+      "&pageSize=2&api_key=XnldbUVobwtWVk7okOaqtHPgMbOSrwLWYj2mdWGz"
+      const result = await axios.get(url)
+      const data = result.data.foods
+
+      console.dir(result.data)
+      console.log('results')
+      console.dir(result.data.results)
+      res.locals.results = result.data
+      res.locals.food = food
+      res.locals.result = result
+      const length = l(data)
+      // res.json(result.data)
+      if(length>0){
+      res.render('viewFood')}
+      else{
+        res.locals.food = food
+        res.render('Nofood')
+      }
+    } catch(error){
+      next(error)
+    }
+})
+
+
+
 // Don't change anything below here ...
 
 // here we catch 404 errors and forward to error handler
