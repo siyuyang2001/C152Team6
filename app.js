@@ -81,6 +81,24 @@ app.get('/Fitness',(req,res) => {
 app.get('/Sports',(req,res) => {
   res.render('Sports')
 })
+app.get('/chest',(req,res) => {
+  res.render('chest')
+})
+app.get('/leg',(req,res) => {
+  res.render('legs')
+})
+app.get('/back',(req,res) => {
+  res.render('back')
+})
+app.get('/smallm',(req,res) => {
+  res.render('smallM')
+})
+app.get('/abs',(req,res) => {
+  res.render('abs')
+})
+app.get('/recordF',(req,res) => {
+  res.render('record')
+  
 app.get('/profiles',
     isLoggedIn,
     async (req,res,next) => {
