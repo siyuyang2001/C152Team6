@@ -72,7 +72,7 @@ app.get('/testing2',(req,res) => {
   res.render('testing2')
 })
 app.get('/Fitness',(req,res) => {
-  res.render('fitenss')
+  res.render('fitness')
 })
 app.get('/profiles',
     isLoggedIn,
