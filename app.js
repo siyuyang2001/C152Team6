@@ -74,23 +74,23 @@ app.get('/testing2',(req,res) => {
 app.get('/Fitness',(req,res) => {
   res.render('fitness')
 })
-app.get('/Fitness',(req,res) => {
-  res.render('fitness')
+app.get('/chest',(req,res) => {
+  res.render('chest')
 })
-app.get('/Fitness',(req,res) => {
-  res.render('fitness')
+app.get('/leg',(req,res) => {
+  res.render('legs')
 })
-app.get('/Fitness',(req,res) => {
-  res.render('fitness')
+app.get('/back',(req,res) => {
+  res.render('back')
 })
-app.get('/Fitness',(req,res) => {
-  res.render('fitness')
+app.get('/smallm',(req,res) => {
+  res.render('smallM')
 })
-app.get('/Fitness',(req,res) => {
-  res.render('fitness')
+app.get('/abs',(req,res) => {
+  res.render('abs')
 })
-app.get('/Fitness',(req,res) => {
-  res.render('fitness')
+app.get('/recordF',(req,res) => {
+  res.render('record')
 })
 app.get('/profiles',
     isLoggedIn,
