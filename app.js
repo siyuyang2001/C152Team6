@@ -74,6 +74,9 @@ app.get('/testing2',(req,res) => {
 app.get('/Fitness',(req,res) => {
   res.render('fitness')
 })
+app.get('/Sports',(req,res) => {
+  res.render('Sports')
+})
 app.get('/profiles',
     isLoggedIn,
     async (req,res,next) => {
