@@ -77,6 +77,24 @@ app.get('/testing2',(req,res) => {
 app.get('/Fitness',(req,res) => {
   res.render('fitness')
 })
+app.get('/Fitness',(req,res) => {
+  res.render('fitness')
+})
+app.get('/Fitness',(req,res) => {
+  res.render('fitness')
+})
+app.get('/Fitness',(req,res) => {
+  res.render('fitness')
+})
+app.get('/Fitness',(req,res) => {
+  res.render('fitness')
+})
+app.get('/Fitness',(req,res) => {
+  res.render('fitness')
+})
+app.get('/Fitness',(req,res) => {
+  res.render('fitness')
+})
 app.get('/profiles',
     isLoggedIn,
     async (req,res,next) => {
