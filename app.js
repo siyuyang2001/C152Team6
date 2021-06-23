@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const axios = require('axios');
 const layouts = require("express-ejs-layouts");
 //const auth = require('./config/auth.js');
 
@@ -107,6 +108,38 @@ app.get('/profiles',
       }
     }
   )
+  app.get('/food', (req,res) => {
+    res.render('food')
+  })
+  function l(data){
+    return data.length
+  }
+  app.post("/getFoodData",
+    async (req,res,next) => {
+      try {
+        const food = req.body.food
+        const url = "https://api.nal.usda.gov/fdc/v1/foods/search?query="+food+
+        "&pageSize=2&api_key=XnldbUVobwtWVk7okOaqtHPgMbOSrwLWYj2mdWGz"
+        const result = await axios.get(url)
+        const data = result.data.foods
+        console.dir(result.data)
+        console.log('results')
+        console.dir(result.data.results)
+        res.locals.results = result.data
+        res.locals.food = food
+        res.locals.result = result
+        const length = l(data)
+        // res.json(result.data)
+        if(length>0){
+        res.render('viewFood')}
+        else{
+          res.locals.food = food
+          res.render('Nofood')
+        }
+      } catch(error){
+        next(error)
+      }
+  })
 
 app.use('/publicprofile/:userId',
     async (req,res,next) => {
@@ -166,6 +199,7 @@ app.get("/test",async (req,res,next) => {
   }
 
 })
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
