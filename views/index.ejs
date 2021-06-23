@@ -1,4 +1,5 @@
-
+<%- include('bootheader') -%>
+<%- include('menubar') -%>
 
   <div class="jumbotron">
 
@@ -6,17 +7,7 @@
 
     <p>Welcome to the Demo Page</p>
 
-    <ul>
-      <li><a href="/testing">Go to a test page </a></li>
-      <li><a href="/testing2">Go to another test page </a></li>
-      <% if (loggedIn) {%>
-      <li><a href="/im">Go to the Independent Minors page </a></li>
-      <li><a href="/profile">See your profile </a></li>
-      <li><a href="/profiles">See everyone's profile</a></li>
-      <li><a href="/todo">See your to do list </a></li>
-      <li><a href="/todoAjax">See your to do list with Ajax </a></li>
-      <% } %>
-    </ul>
   </div>
 
+  <%- include('bootfooter') -%>
   <!-- Hello World! -->
