@@ -139,6 +139,58 @@ app.use('/publicprofile/:userId',
     }
 )
 
+app.get("/apikey", async (req,res,next) => {
+  res.render('apikey')
+})
+
+const APIKey = require('./models/APIKey')
+
+app.post("/apikey",
+  isLoggedIn,
+  async (req,res,next) => {
+    const domainName = req.body.domainName
+    const apikey = req.body.apikey
+    const apikeydoc = new APIKey({
+      userId:req.user._id,
+      domainName:domainName,
+      apikey:apikey
+    })
+    const result = await apikeydoc.save()
+    console.log('result=')
+    console.dir(result)
+    res.redirect('/apikeys')
+})
+
+app.get('/apikeys', isLoggedIn,
+  async (req,res,next) => {
+    res.locals.apikeys = await APIKey.find({userId:req.user._id})
+    console.log('apikeys='+JSON.stringify(res.locals.apikeys.length))
+    res.render('apikeys')
+  })
+
+app.get('/allapikeys', isLoggedIn,
+    async (req,res,next) => {
+      res.locals.apikeys = await APIKey.find({})
+      console.log('apikeys='+JSON.stringify(res.locals.apikeys.length))
+      res.render('apikeys')
+    })
+
+app.get('/apikeys/last/:N', isLoggedIn,
+    async (req,res,next) => {
+      const N = parseInt(req.params.N)
+      const apikeys = await APIKey.find({})
+      res.locals.apikeys = apikeys.slice(0,N)
+      console.log('apikeys='+JSON.stringify(res.locals.apikeys.length))
+      res.render('apikeys')
+    })
+
+app.get('/apikeys/:domainName', isLoggedIn,
+    async (req,res,next) => {
+      res.locals.apikeys = await APIKey.find({domainName:req.params.domainName})
+      console.log('apikeys='+JSON.stringify(res.locals.apikeys.length))
+      res.render('apikeys')
+    })
+
 
 app.get('/profile',
     isLoggedIn,
