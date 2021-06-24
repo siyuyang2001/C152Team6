@@ -3,7 +3,7 @@
 */
 const express = require('express');
 const router = express.Router();
-const IndMinor = require('../models/IndMinor')
+const Exercise = require('../models/Exercise')
 const IndMinorCourse = require('../models/IndMinorCourse')
 
 
@@ -91,14 +91,16 @@ router.get('/delete/:minorId',
 router.post('/',
   isLoggedIn,
   async (req, res, next) => {
-      const im = new IndMinor(
-        {title:req.body.title,
-         createdAt: new Date(),
-         ownerId: req.user._id,
+      const ex = new Exercise(
+        {part:req.body.part,
+        exercise: req.body.exercise,
+        urlLink: req.body.urlLink,
+        shortDescription: req.body.shortDescription,
+        userId: req.user._id
         })
-      await im.save();
+      await ex.save();
       //res.render("todoVerification")
-      res.redirect('/im')
+      res.redirect('/')
 });
 
 
