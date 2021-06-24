@@ -11,7 +11,8 @@ const layouts = require("express-ejs-layouts");
 
 const mongoose = require( 'mongoose' );
 //mongoose.connect( `mongodb+srv://${auth.atlasAuth.username}:${auth.atlasAuth.password}@cluster0-yjamu.mongodb.net/authdemo?retryWrites=true&w=majority`);
-mongoose.connect('mongodb+srv://yizhe0330:a838612357@152finalproject.wruf8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://Yi-ZheHong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://WenxuanJin:JWX12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 
 
 //const mongoDB_URI = process.env.MONGODB_URI
@@ -33,6 +34,7 @@ const toDoAjaxRouter = require('./routes/todoAjax');
 const connectRouter = require('./routes/connect');
 
 const indMinorRouter = require('./routes/indMinor');
+const fitnessRouter = require('./routes/fitness');
 
 
 
@@ -60,6 +62,7 @@ app.use('/todo',toDoRouter);
 app.use('/todoAjax',toDoAjaxRouter);
 
 app.use('/im',indMinorRouter);
+app.use('/fitness',fitnessRouter);
 app.use('/connectWithMe',connectRouter);
 app.use('/result',connectRouter);
 
@@ -77,29 +80,8 @@ app.get('/testing',
 app.get('/testing2',(req,res) => {
   res.render('testing2')
 })
-app.get('/Fitness',(req,res) => {
-  res.render('fitness')
-})
 app.get('/Sports',(req,res) => {
   res.render('Sports')
-})
-app.get('/chest',(req,res) => {
-  res.render('chest')
-})
-app.get('/leg',(req,res) => {
-  res.render('legs')
-})
-app.get('/back',(req,res) => {
-  res.render('back')
-})
-app.get('/smallm',(req,res) => {
-  res.render('smallM')
-})
-app.get('/abs',(req,res) => {
-  res.render('abs')
-})
-app.get('/recordF',(req,res) => {
-  res.render('record')
 })
 app.get('/profiles',
     isLoggedIn,
