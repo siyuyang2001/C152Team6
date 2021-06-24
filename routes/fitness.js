@@ -4,7 +4,7 @@
 const express = require('express');
 const router = express.Router();
 const Exercise = require('../models/Exercise')
-const IndMinorCourse = require('../models/IndMinorCourse')
+
 
 
 /*
@@ -88,7 +88,7 @@ router.get('/delete/:minorId',
 
 
 /* add the value in the body to the list associated to the key */
-router.post('/',
+router.post('/add_exercise',
   isLoggedIn,
   async (req, res, next) => {
       const ex = new Exercise(
@@ -105,7 +105,7 @@ router.post('/',
 
 
 // handle data about adding new course to a minor
-router.post('/addCourse/:minorId',
+router.post('/',
   isLoggedIn,
   async (req, res, next) => {
       const imdata =
