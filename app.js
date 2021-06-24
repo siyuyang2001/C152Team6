@@ -11,7 +11,7 @@ const layouts = require("express-ejs-layouts");
 
 const mongoose = require( 'mongoose' );
 //mongoose.connect( `mongodb+srv://${auth.atlasAuth.username}:${auth.atlasAuth.password}@cluster0-yjamu.mongodb.net/authdemo?retryWrites=true&w=majority`);
-mongoose.connect( 'mongodb://localhost/authDemo');
+mongoose.connect('mongodb+srv://yizhe0330:a838612357@152finalproject.wruf8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 
 
 //const mongoDB_URI = process.env.MONGODB_URI
@@ -100,7 +100,7 @@ app.get('/abs',(req,res) => {
 })
 app.get('/recordF',(req,res) => {
   res.render('record')
-
+})
 app.get('/profiles',
     isLoggedIn,
     async (req,res,next) => {
