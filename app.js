@@ -13,7 +13,10 @@ const mongoose = require( 'mongoose' );
 //mongoose.connect( `mongodb+srv://${auth.atlasAuth.username}:${auth.atlasAuth.password}@cluster0-yjamu.mongodb.net/authdemo?retryWrites=true&w=majority`);
 mongoose.connect( 'mongodb://localhost/authDemo');
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of c8eb80e (mongodb database)
 //const mongoDB_URI = process.env.MONGODB_URI
 >>>>>>> parent of c8eb80e (mongodb database)
 //mongoose.connect(mongoDB_URI)
