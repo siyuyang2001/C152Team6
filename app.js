@@ -12,6 +12,10 @@ const layouts = require("express-ejs-layouts");
 const mongoose = require( 'mongoose' );
 //mongoose.connect( `mongodb+srv://${auth.atlasAuth.username}:${auth.atlasAuth.password}@cluster0-yjamu.mongodb.net/authdemo?retryWrites=true&w=majority`);
 mongoose.connect( 'mongodb://localhost/authDemo');
+<<<<<<< HEAD
+=======
+//const mongoDB_URI = process.env.MONGODB_URI
+>>>>>>> parent of c8eb80e (mongodb database)
 //mongoose.connect(mongoDB_URI)
 
 const db = mongoose.connection;
@@ -97,7 +101,7 @@ app.get('/abs',(req,res) => {
 })
 app.get('/recordF',(req,res) => {
   res.render('record')
-
+  
 app.get('/profiles',
     isLoggedIn,
     async (req,res,next) => {
