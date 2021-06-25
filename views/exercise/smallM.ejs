@@ -1,9 +1,38 @@
 <%- include('bootheader') -%>
-<%- include('menubar') -%>
-
-
 
 <h1>
-SmallMuscle Page! Be Healthy
+Small_Muscle Page! Be Healthy
    </h1>
+   <% l.forEach(l => { %>
+     <div class="row bg-warning">
+       <div class="col">
+         <p>
+Image of <%= l.exercise%>
+           </p><br>
+           <img src=<%= l.urlLink%> >
+         </div>
+
+         <div class="col bg-danger">
+           <p>
+Short Description of <%= l.exercise%>
+             </p>
+
+             <p>
+<%= l.shortDescription%>
+               </p>
+           </div>
+      </div>
+      <br>
+                  <% }) %>
+   <form method="post" action="/fitness/add_exercise">
+     <select name="part" id="part">
+      <option value="smallm">
+     Small_Muscle
+        </option>
+       </select><br>
+       name of the exercise: <input type="text" name="exercise"><br>
+       URL_link : <input type="text" name="URL"><br>
+       short_description of this exercise: <input type="text" name="shortDescription"><br>
+       <input type="submit" value="add this exercise">
+   </form>
   <%- include('bootfooter') -%>

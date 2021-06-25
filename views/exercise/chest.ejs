@@ -1,16 +1,43 @@
 <%- include('bootheader') -%>
-<%- include('menubar') -%>
-
 
 
 <h1>
 Chest Page! Be Healthy
    </h1>
-   <form method="post" action="/add_exercise">
-       new course: <input type="text" name="course"><br>
-       new course: <input type="text" name="course"><br>
-       new course: <input type="text" name="course"><br>
-       new course: <input type="text" name="course"><br>
-       <input type="submit" value="add course to minor">
+   <% l.forEach(l => { %>
+     <div class="row bg-warning">
+       <div class="col">
+         <p>
+Image of <%= l.exercise%>
+           </p><br>
+           <img src=<%= l.urlLink%> >
+         </div>
+
+         <div class="col bg-danger">
+           <p>
+Short Description of <%= l.exercise%>
+             </p>
+
+             <p>
+<%= l.shortDescription%>
+               </p>
+           </div>
+      </div>
+      <br>
+                  <% }) %>
+
+
+   <form method="post" action="/fitness/add_exercise">
+     <select name="part" id="part">
+      <option value="chest">
+     chest
+        </option>
+       </select><br>
+       name of the exercise: <input type="text" name="exercise"><br>
+       URL_link : <input type="text" name="URL"><br>
+       short_description of this exercise: <input type="text" name="shortDescription"><br>
+       <input type="submit" value="add this exercise">
    </form>
+
+
   <%- include('bootfooter') -%>

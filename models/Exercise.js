@@ -8,7 +8,7 @@ var exerciseSchema = Schema( {
   part:String,
   exercise: String,
   urlLink: String,
-  shortDescription: Date,
+  shortDescription: String,
   userId: ObjectId
 } );
 
