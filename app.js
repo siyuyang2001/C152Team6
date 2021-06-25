@@ -140,58 +140,34 @@ app.use('/publicprofile/:userId',
     }
 )
 
-app.get("/apikey", async (req,res,next) => {
-  res.render('apikey')
+app.get("/list", async (req,res,next) => {
+  res.render('list')
 })
 
-const APIKey = require('./models/APIKey')
+const List = require('./models/List')
 
-app.post("/apikey",
+app.post("/list",
   isLoggedIn,
   async (req,res,next) => {
-    const domainName = req.body.domainName
-    const apikey = req.body.apikey
-    const apikeydoc = new APIKey({
+    const amount= req.body.amount
+    const key = req.body.key
+    const doc = new List({
       userId:req.user._id,
-      domainName:domainName,
-      apikey:apikey
+      amount:amount,
+      key:key
     })
-    const result = await apikeydoc.save()
+    const result = await doc.save()
     console.log('result=')
     console.dir(result)
-    res.redirect('/apikeys')
+    res.redirect('/lists')
 })
 
-app.get('/apikeys', isLoggedIn,
+app.get('/lists', isLoggedIn,
   async (req,res,next) => {
-    res.locals.apikeys = await APIKey.find({userId:req.user._id})
-    console.log('apikeys='+JSON.stringify(res.locals.apikeys.length))
-    res.render('apikeys')
+    res.locals.lists = await List.find({userId:req.user._id})
+    console.log('lists='+JSON.stringify(res.locals.lists.length))
+    res.render('lists')
   })
-
-app.get('/allapikeys', isLoggedIn,
-    async (req,res,next) => {
-      res.locals.apikeys = await APIKey.find({})
-      console.log('apikeys='+JSON.stringify(res.locals.apikeys.length))
-      res.render('apikeys')
-    })
-
-app.get('/apikeys/last/:N', isLoggedIn,
-    async (req,res,next) => {
-      const N = parseInt(req.params.N)
-      const apikeys = await APIKey.find({})
-      res.locals.apikeys = apikeys.slice(0,N)
-      console.log('apikeys='+JSON.stringify(res.locals.apikeys.length))
-      res.render('apikeys')
-    })
-
-app.get('/apikeys/:domainName', isLoggedIn,
-    async (req,res,next) => {
-      res.locals.apikeys = await APIKey.find({domainName:req.params.domainName})
-      console.log('apikeys='+JSON.stringify(res.locals.apikeys.length))
-      res.render('apikeys')
-    })
-
 
 app.get('/profile',
     isLoggedIn,
