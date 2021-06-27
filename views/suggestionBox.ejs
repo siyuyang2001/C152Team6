@@ -1,0 +1,52 @@
+
+<div class="jumbotron bg-light">
+        <h1>Help us to improve!</h1>
+        <p>Our web app wants to help you record your life and check necessary daily information!</p>
+        <p>What you can do on our website?</p>
+
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+    Weather
+  </button>
+  <div class="collapse" id="collapseExample1">
+    <div class="card card-body">
+    check weather before going out!
+    </div>
+  </div>
+  <br>
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+    Food and Exercise
+  </button>
+  <div class="collapse" id="collapseExample2">
+    <div class="card card-body">
+      <ul>
+        <li>record the food you eat and exercise everyday</li>
+        <li>find food ingredients and exercise plan</li>
+      </ul>
+    </div>
+  </div>
+  <br>
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+    News
+  </button>
+  <div class="collapse" id="collapseExample3">
+    <div class="card card-body">
+      find daily news
+    </div>
+  </div>
+  <br>
+
+  <p>Write down your suggestion here!</p>
+  <form action="/yourEx" method="post">
+    <textarea name="content" rows="8" cols="80"></textarea>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <p>Other people's suggestion:</p>
+
+  <% id.forEach(id => { %>
+       <%= id.item %><br>
+
+  <% }) %>
+
+</div>
+<%- include('bootfooter') -%>

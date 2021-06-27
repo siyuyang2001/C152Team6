@@ -30,7 +30,7 @@ const usersRouter = require('./routes/users');
 const toDoRouter = require('./routes/todo');
 const toDoAjaxRouter = require('./routes/todoAjax');
 const connectRouter = require('./routes/connect');
-
+const yourExRouter = require('./routes/yourEx');
 const indMinorRouter = require('./routes/indMinor');
 const fitnessRouter = require('./routes/fitness');
 
@@ -63,6 +63,8 @@ app.use('/im',indMinorRouter);
 app.use('/fitness',fitnessRouter);
 app.use('/connectWithMe',connectRouter);
 app.use('/result',connectRouter);
+app.use('/yourEx',yourExRouter);
+app.use('/suggestionBox',yourExRouter);
 
 const myLogger = (req,res,next) => {
   console.log('inside a route!')
