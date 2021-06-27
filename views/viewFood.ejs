@@ -1,0 +1,63 @@
+<%- include('bootheader') -%>
+
+<%- include('menubar') -%>
+
+
+
+<div style="border-top:thick solid green; margin:20; padding:10">
+      <h1 class="bg-warning">According to the USDA data..</h1>
+</div>
+
+
+<div class="row">
+
+  <div class="col">
+    <h3>
+      Product 1:<br>
+    </h3>
+    <h5>
+    product
+      product name: <%= results.foods[0].description %><br>
+      product category:  <%= results.foods[0].foodCategory %>
+      Brand name:<%= results.foods[0].brandName %>
+
+     </h5>
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <Text>
+    <% results.foods[0].foodNutrients.map((food) => {%>
+    <%= food.nutrientName%>: <%= food.value %> <%= food.unitName %> <br>
+    <%})%>
+    </Text>
+    </div>
+</div>
+
+  <div class="col">
+    <h3>
+      Product 2:<br>
+      </h3>
+      <h5>
+      product name: <%= results.foods[1].description %><br>
+      product category:  <%= results.foods[1].foodCategory %>
+  <br>    Brand name:<%= results.foods[1].brandName %>
+     </h5>
+     <div class="shadow p-3 mb-5 bg-body rounded">
+    <Text>
+    <% results.foods[1].foodNutrients.map((food) => {%>
+    <%= food.nutrientName%>: <%= food.value %> <%= food.unitName %> <br>
+    <%})%>
+    </Text>
+    </div>
+    </div>
+
+<div class="col">
+      <img width="450" src="https://www.veganeasy.org/wp-content/uploads/2020/09/nutrition_chart_102-1.jpg">
+      </div>
+
+
+
+    </div>
+
+
+
+
+<%- include('bootfooter') -%>
