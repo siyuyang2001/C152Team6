@@ -67,7 +67,7 @@ router.get('/abs',
   isLoggedIn,
   async (req, res, next) => {
     res.locals.l = await Exercise.find({part:'abs',userId:req.user._id})
-    console.log(res.locals.l)
+    // console.log(res.locals.l)
       res.render('../views/exercise/abs')
 });
 router.get('/recordF',
@@ -105,12 +105,13 @@ router.post('/add_exercise',
         {part:req.body.part,
         exercise: req.body.exercise,
         urlLink: req.body.URL,
+        localPicture: req.body.img,
         shortDescription: req.body.shortDescription,
         userId: req.user._id
         })
       await ex.save();
       //res.render("todoVerification")
-      console.log(req.body.part)
+      console.log(ex)
       res.redirect('/fitness/'+req.body.part)
 });
 
