@@ -200,20 +200,6 @@ app.get('/profiles',
   return "around 2000";
   }}
 
-app.use('/publicprofile/:userId',
-    async (req,res,next) => {
-      try {
-        let userId = req.params.userId
-        res.locals.profile = await User.findOne({_id:userId})
-        res.render('publicprofile')
-      }
-      catch(e){
-        console.log("Error in /profile/userId:")
-        next(e)
-      }
-    }
-)
-
 app.get("/list", async (req,res,next) => {
   res.render('list')
 })
@@ -244,30 +230,13 @@ app.get('/lists', isLoggedIn,
   })
 
 app.get('/profile',
-    isLoggedIn,
     (req,res) => {
       res.render('profile')
     })
 
-app.get('/editProfile',
-    isLoggedIn,
-    (req,res) => res.render('editProfile'))
-
-app.post('/editProfile',
-    isLoggedIn,
-    async (req,res,next) => {
-      try {
-        let username = req.body.username
-        let age = req.body.age
-        req.user.username = username
-        req.user.age = age
-        req.user.imageURL = req.body.imageURL
-        await req.user.save()
-        res.redirect('/profile')
-      } catch (error) {
-        next(error)
-      }
-
+app.get('/aboutWenxuan',
+    (req,res) => {
+      res.render('aboutWenxuan')
     })
 
 
