@@ -12,8 +12,7 @@ const layouts = require("express-ejs-layouts");
 const mongoose = require( 'mongoose' );
 //mongoose.connect( `mongodb+srv://${auth.atlasAuth.username}:${auth.atlasAuth.password}@cluster0-yjamu.mongodb.net/authdemo?retryWrites=true&w=majority`);
 //mongoose.connect('mongodb+srv://Yi-ZheHong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
-mongoose.connect( 'mongodb://localhost/authDemo');
-//mongoose.connect('mongodb+srv://WenxuanJin:JWX12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+ mongoose.connect('mongodb+srv://WenxuanJin:JWX12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 // mongoose.connect('mongodb+srv://siyuyang:siyu20010216@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 // mongoose.connect('mongodb+srv://kenxiong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 
@@ -32,7 +31,6 @@ const toDoRouter = require('./routes/todo');
 const toDoAjaxRouter = require('./routes/todoAjax');
 const connectRouter = require('./routes/connect');
 const yourExRouter = require('./routes/yourEx');
-const indMinorRouter = require('./routes/indMinor');
 const fitnessRouter = require('./routes/fitness');
 
 
@@ -59,8 +57,6 @@ app.use('/users', usersRouter);
 
 app.use('/todo',toDoRouter);
 app.use('/todoAjax',toDoAjaxRouter);
-
-app.use('/im',indMinorRouter);
 app.use('/fitness',fitnessRouter);
 app.use('/connectWithMe',connectRouter);
 app.use('/result',connectRouter);
@@ -224,20 +220,6 @@ app.get('/profiles',
   return "around 2000";
   }}
 
-app.use('/publicprofile/:userId',
-    async (req,res,next) => {
-      try {
-        let userId = req.params.userId
-        res.locals.profile = await User.findOne({_id:userId})
-        res.render('publicprofile')
-      }
-      catch(e){
-        console.log("Error in /profile/userId:")
-        next(e)
-      }
-    }
-)
-
 app.get("/list", async (req,res,next) => {
   res.render('list')
 })
@@ -268,30 +250,13 @@ app.get('/lists', isLoggedIn,
   })
 
 app.get('/profile',
-    isLoggedIn,
     (req,res) => {
       res.render('profile')
     })
 
-app.get('/editProfile',
-    isLoggedIn,
-    (req,res) => res.render('editProfile'))
-
-app.post('/editProfile',
-    isLoggedIn,
-    async (req,res,next) => {
-      try {
-        let username = req.body.username
-        let age = req.body.age
-        req.user.username = username
-        req.user.age = age
-        req.user.imageURL = req.body.imageURL
-        await req.user.save()
-        res.redirect('/profile')
-      } catch (error) {
-        next(error)
-      }
-
+app.get('/aboutWenxuan',
+    (req,res) => {
+      res.render('aboutWenxuan')
     })
 
 
@@ -328,6 +293,30 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+<<<<<<< HEAD
 
+=======
+app.get('/weather', (req,res) => {
+  res.render('weather')
+})
+app.post("/getWeather",
+  async (req,res,next) => {
+    try {
+      const state = req.body.state
+      const url = "http://api.openweathermap.org/data/2.5/weather?q="+state+"&units=imperial&APPID=d3fd7fe792d8f4a038633a7170d66256"
+      const result = await axios.get(url)
+      console.dir(result.data)
+      const picurl = "http://openweathermap.org/img/w/"+result.data.weather[0].icon+".png"
+      console.log(picurl)
+      res.locals.state = state
+      res.locals.pic = picurl
+      res.locals.description = result.data.weather[0].description
+      res.locals.temp = result.data.main.temp
+      res.render('getWeather')
+    } catch(error){
+      next(error)
+    }
+})
+>>>>>>> bb1d7c8b9dab00e9035b0c714cf1443511485414
 
 module.exports = app;
