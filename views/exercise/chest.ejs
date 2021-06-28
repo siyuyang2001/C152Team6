@@ -1,11 +1,14 @@
 <%- include('bootheader') -%>
-
+<style>
+  article, aside, figure, footer, header, hgroup,
+  menu, nav, section { display: block; },
+</style>
 
 <h1>
 Chest Page! Be Healthy
    </h1>
    <% l.forEach(l => { %>
-     <div class="row bg-warning">
+     <div class="row" style="background-color:#f0ffff;">
        <div class="col">
          <p>
 Image of <%= l.exercise%>
@@ -13,7 +16,7 @@ Image of <%= l.exercise%>
            <img src=<%= l.urlLink%> >
          </div>
 
-         <div class="col bg-danger">
+         <div class="col"style="background-color:#fff0f0;">
            <p>
 Short Description of <%= l.exercise%>
              </p>
@@ -26,7 +29,9 @@ Short Description of <%= l.exercise%>
       <br>
                   <% }) %>
 
-
+<div class="alert alert-success" role="alert">
+  This is a success alert—check it out!
+</div>
    <form method="post" action="/fitness/add_exercise">
      <select name="part" id="part">
       <option value="chest">
