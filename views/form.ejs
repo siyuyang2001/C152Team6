@@ -1,0 +1,46 @@
+<%- include('bootheader') -%>
+<%- include('menubar') -%>
+    <h1>
+      Lets see what is your goal and your current dietary habit...
+    </h1>
+<div class="col">
+  <div class="row">
+<form method="post" action="/showformdata">
+  Enter your name:
+  <input type="text"
+         name="fullname"
+         placeholder="your full name"><br>
+  What is your age?
+  <input type="text"
+         name="age"
+         placeholder="your age"><br>
+  What is your weight?
+  <input type="text"
+         name="weight"
+         placeholder="weight in kilograms(kg)"><br>
+  What is your height?
+<input type="text"
+        name="height"
+        placeholder="height in centimeters(cm)"><br>
+        <hr>
+  <img src="https://myparla.com/wp-content/uploads/2019/07/what-is-a-healthy-lifestyle.png" width="400" height="300">
+
+<br><br>
+  What is your biological gender<br>
+    female <input type="radio" name="gender" value="female"><br>
+    male <input type="radio" name="gender" value="male"><br>
+            <hr>
+
+  Are you looking for a diet to lose weight?<br>
+    yes <input type="radio" name="loseWeight" value="yes"><br>
+    no  <input type="radio" name="loseWeight" value="no"><br>
+      <hr>
+  <input type="submit" value="Done">
+    </div>
+  </div>
+</form>
+
+<hr>
+
+
+<%- include('bootfooter') -%>
