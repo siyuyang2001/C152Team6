@@ -31,7 +31,6 @@ const toDoRouter = require('./routes/todo');
 const toDoAjaxRouter = require('./routes/todoAjax');
 const connectRouter = require('./routes/connect');
 const yourExRouter = require('./routes/yourEx');
-const indMinorRouter = require('./routes/indMinor');
 const fitnessRouter = require('./routes/fitness');
 
 
@@ -59,7 +58,6 @@ app.use('/users', usersRouter);
 app.use('/todo',toDoRouter);
 app.use('/todoAjax',toDoAjaxRouter);
 
-app.use('/im',indMinorRouter);
 app.use('/fitness',fitnessRouter);
 app.use('/connectWithMe',connectRouter);
 app.use('/result',connectRouter);
