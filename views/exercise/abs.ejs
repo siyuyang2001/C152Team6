@@ -1,5 +1,12 @@
 <%- include('bootheader') -%>
-
+<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+<meta charset=utf-8 />
+<style>
+  article, aside, figure, footer, header, hgroup,
+  menu, nav, section { display: block; }
+</style>
 <h1>
 Abs Page! Be Healthy
    </h1>
@@ -9,7 +16,7 @@ Abs Page! Be Healthy
          <p>
 Image of <%= l.exercise%>
            </p><br>
-           <img src=<%= l.urlLink%> >
+           <img src=<%= l.localPicture%> >
          </div>
 
          <div class="col bg-danger">
@@ -31,8 +38,40 @@ Short Description of <%= l.exercise%>
         </option>
        </select><br>
        name of the exercise: <input type="text" name="exercise"><br>
-       URL_link : <input type="text" name="URL"><br>
-       short_description of this exercise: <input type="text" name="shortDescription"><br>
+       <select name="choose" id="choose">
+        <option value="link">
+        URL_link
+          </option>
+          <option value="local">
+          Select image from your computer
+            </option>
+         </select><br>
+           URL_link : <input type="text" name="URL"><br>
+
+        <br>Select Pictures from your computer<br>
+        <input name = "img" type='file' onchange="readURL(this);" />
+          <img id="blah" src="#" alt="your image" />
+          <script>
+            function readURL(input) {
+                 if (input.files && input.files[0]) {
+                     var reader = new FileReader();
+
+                     reader.onload = function (e) {
+                         $('#blah')
+                             .attr('src', e.target.result)
+                             .width(550)
+                             .height(600);
+                     };
+
+                     reader.readAsDataURL(input.files[0]);
+                 }
+             }
+        </script>
+<br>
+       short_description of this exercise:
+       <input type="text" name="shortDescription"><br>
+
        <input type="submit" value="add this exercise">
    </form>
+
   <%- include('bootfooter') -%>

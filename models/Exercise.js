@@ -8,8 +8,10 @@ var exerciseSchema = Schema( {
   part:String,
   exercise: String,
   urlLink: String,
+  localPicture: String,
   shortDescription: String,
   userId: ObjectId
+
 } );
 
 module.exports = mongoose.model( 'Exercise', exerciseSchema );
