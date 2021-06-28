@@ -12,7 +12,8 @@ const layouts = require("express-ejs-layouts");
 const mongoose = require( 'mongoose' );
 //mongoose.connect( `mongodb+srv://${auth.atlasAuth.username}:${auth.atlasAuth.password}@cluster0-yjamu.mongodb.net/authdemo?retryWrites=true&w=majority`);
 //mongoose.connect('mongodb+srv://Yi-ZheHong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
- mongoose.connect('mongodb+srv://WenxuanJin:JWX12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+mongoose.connect( 'mongodb://localhost/authDemo');
+//mongoose.connect('mongodb+srv://WenxuanJin:JWX12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 // mongoose.connect('mongodb+srv://siyuyang:siyu20010216@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 // mongoose.connect('mongodb+srv://kenxiong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 
@@ -31,7 +32,6 @@ const toDoRouter = require('./routes/todo');
 const toDoAjaxRouter = require('./routes/todoAjax');
 const connectRouter = require('./routes/connect');
 const yourExRouter = require('./routes/yourEx');
-const indMinorRouter = require('./routes/indMinor');
 const fitnessRouter = require('./routes/fitness');
 
 
@@ -59,7 +59,6 @@ app.use('/users', usersRouter);
 app.use('/todo',toDoRouter);
 app.use('/todoAjax',toDoAjaxRouter);
 
-app.use('/im',indMinorRouter);
 app.use('/fitness',fitnessRouter);
 app.use('/connectWithMe',connectRouter);
 app.use('/result',connectRouter);
