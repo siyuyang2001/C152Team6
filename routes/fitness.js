@@ -75,6 +75,11 @@ router.get('/recordF',
   async (req, res, next) => {
       res.render('../views/exercise/record')
 });
+router.get('/CalBMR',
+  isLoggedIn,
+  async (req, res, next) => {
+      res.render('../views/exercise/BMRresult')
+});
 //
 // router.get('/:minorId',
 //   isLoggedIn,
@@ -113,6 +118,29 @@ router.post('/add_exercise',
       //res.render("todoVerification")
       console.log(ex)
       res.redirect('/fitness/'+req.body.part)
+});
+router.post('/CalBMR',
+  isLoggedIn,
+  async (req, res, next) => {
+      const ex = new Exercise(
+        {part:req.body.part,
+        exercise: req.body.exercise,
+        urlLink: req.body.URL,
+        localPicture: req.body.img,
+        shortDescription: req.body.shortDescription,
+        userId: req.user._id
+        })
+      await ex.save();
+      //res.render("todoVerification")
+      console.log(ex)
+      const calculate = require('fitness-health-calculations');
+      const gender = req.body.gender
+      const age = req.body.age
+      const height = req.body.age
+      const weight = req.body.weight
+      let myBmr = calculate.bmr(gender, parseFloat(age), parseFloat(height), parseFloat(weight));
+      res.locals.l = myBmr
+      res.render('../views/exercise/BMRresult')
 });
 
 
