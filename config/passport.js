@@ -48,12 +48,7 @@ module.exports = function(passport) {
     const clientSecret = process.env.clientSecret
     const callbackURL = process.env.callbackURL
 */
-    const HttpsProxyAgent = require('https-proxy-agent');
-
-    const agent = new HttpsProxyAgent(process.env.HTTP_PROXY || "http://127.0.0.1:1087");
-
-
-    const gStrategy =(new GoogleStrategy({
+    passport.use(new GoogleStrategy({
 
         clientID        : clientID,
         clientSecret    : clientSecret,
@@ -112,8 +107,5 @@ module.exports = function(passport) {
         });
 
     }));
-    gStrategy._oauth2.setAgent(agent);
-
-    passport.use(gStrategy);
 
 };
