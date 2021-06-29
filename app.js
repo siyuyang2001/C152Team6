@@ -13,9 +13,9 @@ const mongoose = require( 'mongoose' );
 //mongoose.connect( `mongodb+srv://${auth.atlasAuth.username}:${auth.atlasAuth.password}@cluster0-yjamu.mongodb.net/authdemo?retryWrites=true&w=majority`);
 //mongoose.connect('mongodb+srv://Yi-ZheHong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 // mongoose.connect('mongodb+srv://WenxuanJin:JWX12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
-// mongoose.connect('mongodb+srv://siyuyang:siyu20010216@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://siyuyang:siyu20010216@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 // mongoose.connect('mongodb+srv://kenxiong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
-mongoose.connect( 'mongodb://localhost/authDemo');
+//mongoose.connect( 'mongodb://localhost/authDemo');
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -263,6 +263,11 @@ app.get('/aboutWenxuan',
         (req,res) => {
           res.render('aboutYiZhe')
         })
+    app.get('/aboutSiyu',
+    (req,res) => {
+          res.render('aboutSiyu')
+            })
+
 
 app.use('/data',(req,res) => {
   res.json([{a:1,b:2},{a:5,b:3}]);
