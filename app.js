@@ -334,7 +334,10 @@ app.get('/aboutWenxuan',
     (req,res) => {
           res.render('aboutSiyu')
             })
-
+app.get('/aboutKenXiong',
+    (req,res) => {
+      res.render('aboutKenXiong')
+    })
 
 app.use('/data',(req,res) => {
   res.json([{a:1,b:2},{a:5,b:3}]);
