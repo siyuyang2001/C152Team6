@@ -1,0 +1,26 @@
+<%- include('bootheader') -%>
+
+<h1>
+Legs Page! Be Healthy
+   </h1>
+
+   <form method="post" action="/games/yizheChoosediff">
+     <select name="gamename" id="gamename">
+      <option value="PPG">
+     Ping_Pong_Game
+        </option>
+       </select><br>
+       <select name="yDiff" id="yDiff">
+        <option value="easy">
+       Easy
+          </option>
+          <option value="mild">
+         Mild
+            </option>
+            <option value="hard">
+           Hard
+              </option>
+         </select><br>
+       <input type="submit" value="start the game!">
+   </form>
+  <%- include('bootfooter') -%>

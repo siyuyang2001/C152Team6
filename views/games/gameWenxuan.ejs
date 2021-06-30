@@ -123,6 +123,12 @@ function everyinterval(n) {
     if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
     return false;
 }
+function myFunction() {
+  document.location.reload()
+}
+function myFunction1() {
+  location.href = "http://localhost:5000/games/refForm";
+}
 
 function accelerate(n) {
     myGamePiece.gravity = n;
@@ -132,5 +138,8 @@ function accelerate(n) {
 <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">ACCELERATE</button>
 <p>Use the ACCELERATE button to stay in the air</p>
 <p>How long can you stay alive?</p>
+<br>
+<button onclick="myFunction()">Restart!!!</button>
+<button onclick="myFunction1()">Leave some Comments</button>
 </body>
 <%- include('bootfooter') -%>

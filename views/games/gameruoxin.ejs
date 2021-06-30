@@ -173,7 +173,12 @@
         dy = 10;
       }
     }
-
+    function myFunction1() {
+      location.href = "http://localhost:5000/games/refForm";
+    }
+    function myFunction() {
+      document.location.reload()
+    }
     function move_snake() {
       // Create the new Snake's head
       const head = {x: snake[0].x + dx, y: snake[0].y + dy};
@@ -194,4 +199,8 @@
 }
 
 </script>
+<br>
+<button onclick="myFunction()">Restart!!!</button>
+<button onclick="myFunction1()">Leave some Comments</button>
+
 </html>

@@ -38,7 +38,7 @@ router.get('/',
 router.get('/pingpong',
   isLoggedIn,
   async (req, res, next) => {
-      res.render('../views/games/smallG')
+      res.render('../views/games/yizheForm')
 });
 
 
@@ -127,6 +127,67 @@ router.post('/add_exercise',
       console.log(ex)
       res.redirect('/fitness/'+req.body.part)
 });
+router.post('/yizheChoosediff',
+  isLoggedIn,
+  async (req, res, next) => {
+    const diff = req.body.yDiff
+    const x = dx(diff)
+    const y = dy(diff)
+    const z = dz(diff)
+    const n = dn(diff)
+
+    res.locals.x = x
+    res.locals.n = n
+    res.locals.z = z
+    res.locals.y = y
+    res.render('../views/games/smallG')
+});
+function dx(diff){
+if (diff == "easy"){
+  return 3;
+}
+if (diff == "mild"){
+return 5;
+}
+if (diff == "hard"){
+  return 10;
+}
+}
+function dz(diff){
+if (diff == "easy"){
+  return 1;
+}
+if (diff == "mild"){
+return 2;
+}
+if (diff == "hard"){
+  return 3;
+}
+}
+function dn(diff){
+if (diff == "easy"){
+  return 3;
+}
+if (diff == "mild"){
+return 2;
+}
+if (diff == "hard"){
+  return 1;
+}
+}
+function dy(diff){
+if (diff == "easy"){
+  return -4;
+}
+if (diff == "mild"){
+return -6;
+}
+if (diff == "hard"){
+  return -10;
+}
+}
+
+
 router.post('/CalBMR',
   isLoggedIn,
   async (req, res, next) => {

@@ -8,7 +8,6 @@ var gamesSchema = Schema( {
   gamename:String,
   score: String,
   date: Date,
-  live: String,
   shortDescription: String,
   userId: ObjectId
 
