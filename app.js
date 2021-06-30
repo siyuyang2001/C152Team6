@@ -272,6 +272,11 @@ if(loseWeight=="balance"){
 return need.balance;
 }
 }
+function bmi(BMI){
+  if(BMI<18.5){
+      return "You are underweight:(";
+  }
+}
 
 app.get("/list", async (req,res,next) => {
   res.render('list')
@@ -284,10 +289,12 @@ app.post("/list",
   async (req,res,next) => {
     const amount= req.body.amount
     const key = req.body.key
+    const calories = req.body.calories
     const doc = new List({
       userId:req.user._id,
       amount:amount,
-      key:key
+      key:key,
+      calories:calories
     })
     const result = await doc.save()
     console.log('result=')
