@@ -1,43 +1,64 @@
 <%- include('bootheader') -%>
 <%- include('menubar') -%>
     <h1>
-      Lets see what is your goal and your current dietary habit...
-    </h1>
-<div class="col">
-  <div class="row">
+    Lets complete a survey and get to know some data about  <mark>yourself!</mark>
+    </h1><br>
+<div class="row">
+  <div class="col">
 <form method="post" action="/showformdata">
-  Enter your name:
+  
+ <label for="fullname">What is your name?</label><br>
   <input type="text"
          name="fullname"
          placeholder="your full name"><br>
-  What is your age?
+
+<label for="age">  What is your age?</label><br>
   <input type="text"
          name="age"
          placeholder="your age"><br>
-  What is your weight?
+         </div>
+      <div class="col">
+<label for="weight">  What is your weight?</label><br>
   <input type="text"
          name="weight"
          placeholder="weight in kilograms(kg)"><br>
-  What is your height?
+<label for="height">  What is your height?</label><br>
 <input type="text"
         name="height"
         placeholder="height in centimeters(cm)"><br>
+        </div>
         <hr>
-  <img src="https://myparla.com/wp-content/uploads/2019/07/what-is-a-healthy-lifestyle.png" width="400" height="300">
+  <div class="col">
+  <img src="https://myparla.com/wp-content/uploads/2019/07/what-is-a-healthy-lifestyle.png" width="300" height="250">
+  <img src="https://www.cdc.gov/healthyweight/images/assessing/bmi-adult-fb-600x315.jpg" width="450" height="250">
+    <img src="https://cdn.inchcalculator.com/wp-content/uploads/2021/04/bmr-formulas.png" width="400" height="300">
+  </div>  <hr>
 
 <br><br>
-  What is your biological gender<br>
+<div class="col">
+<label for="gender"> What is your biological gender?</label><br>
+
     female <input type="radio" name="gender" value="female"><br>
     male <input type="radio" name="gender" value="male"><br>
             <hr>
-
-  Are you looking for a diet to lose weight?<br>
-    yes <input type="radio" name="loseWeight" value="yes"><br>
-    no  <input type="radio" name="loseWeight" value="no"><br>
-      <hr>
-  <input type="submit" value="Done">
-    </div>
+<label for="activity">Are you active/do you take exercise?</label><br>
+     sedentary<input type="radio" name="activity" value="sedentary"><br>
+    light<input type="radio" name="activity" value="light"><br>
+      moderate<input type="radio" name="activity" value="moderate"><br>
+      active<input type="radio" name="activity" value="active"><br>
+       extreme<input type="radio" name="activity" value="extreme"><br>
+              <hr>
   </div>
+  <label for="loseWeight">Are you looking for a diet to lose weight?</label><br>
+    I want to lose a little weight<input type="radio" name="loseWeight" value="mildWeightLoss"><br>
+     I want to lose a LOT of weight <input type="radio" name="loseWeight" value="heavyWeightLoss"><br>
+     I want to gain a little weight <input type="radio" name="loseWeight" value="mildWeightGain"><br>
+     I want to gain a LOT of weight <input type="radio" name="loseWeight" value="heavyWeightGain"><br>
+    I just want to keep fit, no gain and no lose<input type="radio" name="loseWeight" value="balance"><br>
+      <hr>
+  <input type="submit" value="Register">
+    </div>
+
 </form>
 
 <hr>
