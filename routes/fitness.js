@@ -145,13 +145,13 @@ router.post('/CalBMR',
       await ex.save();
       //res.render("todoVerification")
       console.log(ex)
-      const calculate = require('fitness-health-calculations');
+
       const gender = req.body.gender
       const age = req.body.age
       const height = req.body.age
       const weight = req.body.weight
-      let myBmr = calculate.bmr(gender, parseFloat(age), parseFloat(height), parseFloat(weight));
-      res.locals.l = myBmr
+
+      
       res.render('../views/exercise/BMRresult')
 });
 
