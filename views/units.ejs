@@ -1,0 +1,85 @@
+<%- include('bootheader') -%>
+<%- include('menubar') -%>
+
+
+
+<div class="jumbotron">
+    <h1>I will help you to convert the unit</h1>
+</div>
+
+
+   <div class="row">
+     <div class="col bg-danger">
+       <h2>Length:</h2>
+     </div>
+     <div class="col bg-warning">
+       <h2>Weight:</h2>
+     </div>
+     <div class="col bg-danger">
+       <h2>Time:</h2>
+     </div>
+   </div>
+
+   <div class="row">
+       <div class="col">
+       <form method="post" action="/units">
+    value <input type="number" name="value"><br>
+    from <select name="in">
+    <option>g</option>
+    <option>kg</option>
+    <option>pound</option>
+    <option>ounce</option>
+    </select>
+    to <select name="out">
+    <option>g</option>
+    <option>kg</option>
+    <option>pound</option>
+    <option>ounce</option>
+    </select><br>
+      <button type="submit" class="btn btn-danger">Calculate</button>
+    </form>
+     </div>
+
+
+     <div class="col">
+       <form method="post" action="/units">
+    value <input type="number" name="value"><br>
+    from <select name="in">
+    <option>cm</option>
+    <option>m</option>
+    <option>inch</option>
+    <option>foot</option>
+    </select>
+    to <select name="out">
+    <option>cm</option>
+    <option>m</option>
+    <option>inch</option>
+    <option>foot</option>
+    </select><br>
+      <button type="submit" class="btn btn-warning">Calculate</button>
+       </form>
+     </div>
+
+     <div class="col">
+       <form method="post" action="/units">
+    value <input type="number" name="value"><br>
+    from <select name="in">
+    <option>second</option>
+    <option>minute</option>
+    <option>hour</option>
+    <option>day</option>
+    </select>
+    to <select name="out">
+    <option>second</option>
+    <option>minute</option>
+    <option>hour</option>
+    <option>day</option>
+    </select><br>
+       <button type="submit" class="btn btn-danger">Calculate</button>
+       </form>
+       </div>
+</div>
+
+
+  <%- include('bootfooter') -%>
+  <!-- Hello World! -->

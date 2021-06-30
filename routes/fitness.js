@@ -73,8 +73,25 @@ router.get('/abs',
 router.get('/recordF',
   isLoggedIn,
   async (req, res, next) => {
-      res.render('../views/exercise/record')
+      res.render('../views/exercise/smallG')
 });
+router.get('/CalBMR',
+  isLoggedIn,
+  async (req, res, next) => {
+      res.render('../views/exercise/BMRresult')
+});
+router.get('/delete',
+  isLoggedIn,
+  async (req,res,next) => {
+      // delete the minor from the collection of minors
+      try{
+      await Exercise.remove();
+        }
+      catch(e){
+        next(e)
+      }
+      res.redirect('/')
+})
 //
 // router.get('/:minorId',
 //   isLoggedIn,
@@ -113,6 +130,29 @@ router.post('/add_exercise',
       //res.render("todoVerification")
       console.log(ex)
       res.redirect('/fitness/'+req.body.part)
+});
+router.post('/CalBMR',
+  isLoggedIn,
+  async (req, res, next) => {
+      const ex = new Exercise(
+        {part:req.body.part,
+        exercise: req.body.exercise,
+        urlLink: req.body.URL,
+        localPicture: req.body.img,
+        shortDescription: req.body.shortDescription,
+        userId: req.user._id
+        })
+      await ex.save();
+      //res.render("todoVerification")
+      console.log(ex)
+
+      const gender = req.body.gender
+      const age = req.body.age
+      const height = req.body.age
+      const weight = req.body.weight
+
+
+      res.render('../views/exercise/BMRresult')
 });
 
 

@@ -3,22 +3,37 @@
 
 <%- include('menubar') -%>
 
+
     <div class="jumbotron">
-        <h1><%= fullname %>'s personal calories intake suggestion:</h1>
-        <h3>If you have moderate activities every day...</h3>
+        <h2><u><%= fullname %>'s personal calories intake suggestion:</u></h2>
     </div>
 
 
-<div class="col">
+<div class="row">
+  <div class="col">
   <ul>
-
-  According to your information, we know that... <br><br>
+  According to your information: <br><br>
        <li>  you are <%= age %> years old;</li><br><br>
        <li>  you are <%= height %> cm;</li><br><br>
        <li>  you weight <%= weight %> kg;</li><br><br>
-    <li>   <p style="background-color:tomato;">your recommended calories intake per day is <%= calories %>; <br><br></p></li>
+       <li>   <mark>your bmi value is about <strong><%=BMI%>;</strong> </mark></li><br><br>
+        <li>   <mark>your bmr value is about <strong><%= BMR %>;</strong> </mark></li><br><br>
+     <li>   <mark>your TDEE(total daily energy expenditure) is about <strong><%= TDEE %>;</strong> </mark></li><br><br>
+    <li>   <p style="background-color:tomato;">your recommended calories intake per day is <strong><%=need%>; </strong> <br><br></p></li>
 
   </ul>
+  </div>
+
+  <div class="col">
+    <nav class="nav">
+      <h2>If you are wondering what is BMI,BMR, TDEE, here are some useful articles...</h2>
+   <a class="nav-link active" aria-current="page" href="https://www.220triathlon.com/training/nutrition-training/whats-th
+  e-difference-between-bmi-and-bmr/">Difference between BMI and BMR</a><br>
+  <br> <a class="nav-link" href="https://chomps.com/blogs/news/what-is-bmr-tdee">What is BMR and TDEE and how to use them to lose weight</a><br>
+<br>  <a class="nav-link" href="https://blog.nasm.org/nutrition/resting-metabolic-rate-how-to-calculate-and-improve-yours">About the Mifflin-St Jeor formula</a>
+</nav>
+    </div
+    >
  </div>
     <hr>
 
