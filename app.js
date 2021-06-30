@@ -43,6 +43,7 @@ const toDoAjaxRouter = require('./routes/todoAjax');
 const connectRouter = require('./routes/connect');
 const yourExRouter = require('./routes/yourEx');
 const fitnessRouter = require('./routes/fitness');
+const gamesRouter = require('./routes/games');
 
 
 
@@ -73,6 +74,7 @@ app.use('/connectWithMe',connectRouter);
 app.use('/result',connectRouter);
 app.use('/yourEx',yourExRouter);
 app.use('/suggestionBox',yourExRouter);
+app.use('/games',gamesRouter);
 
 const myLogger = (req,res,next) => {
   console.log('inside a route!')
