@@ -198,7 +198,7 @@ function check(inn,outt,valuee){
   if(inn=='day'&&outt=='day') return valuee
 
   if(inn=='cm'&&outt=='cm') return valuee
-  if(inn=='cm'&&outt=='m') valuee/100
+  if(inn=='cm'&&outt=='m') return valuee/100
   if(inn=='cm'&&outt=='inch') return 0.394*valuee
   if(inn=='cm'&&outt=='foot') return 0.0328*valuee
   if(inn=='m'&&outt=='cm') return valuee*100
@@ -231,7 +231,7 @@ app.get('/profiles',
     }
   )
   app.get('/food', (req,res) => {
-    res.render('food')
+    res.render('./health/food')
   })
   function l(data){
     return data.length
@@ -265,7 +265,7 @@ app.get('/profiles',
 
 
   app.get("/form", (request,response) => {
-    response.render("form")
+    response.render("health/form")
   })
 
   app.post('/showformdata', (req,res) => {
@@ -334,7 +334,7 @@ function bmi(BMI){
 }
 
 app.get("/list", async (req,res,next) => {
-  res.render('list')
+  res.render('health/list')
 })
 
 const List = require('./models/List')
@@ -361,7 +361,7 @@ app.get('/lists', isLoggedIn,
   async (req,res,next) => {
     res.locals.lists = await List.find({userId:req.user._id})
     console.log('lists='+JSON.stringify(res.locals.lists.length))
-    res.render('lists')
+    res.render('health/lists')
   })
 
 app.get('/profile',
