@@ -198,7 +198,7 @@ function check(inn,outt,valuee){
   if(inn=='day'&&outt=='day') return valuee
 
   if(inn=='cm'&&outt=='cm') return valuee
-  if(inn=='cm'&&outt=='m') valuee/100
+  if(inn=='cm'&&outt=='m') return valuee/100
   if(inn=='cm'&&outt=='inch') return 0.394*valuee
   if(inn=='cm'&&outt=='foot') return 0.0328*valuee
   if(inn=='m'&&outt=='cm') return valuee*100

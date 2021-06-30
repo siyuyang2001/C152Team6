@@ -47,6 +47,13 @@ router.get('/wenxuan',
   async (req, res, next) => {
       res.render('../views/games/gameWenxuan')
 });
+
+router.get('/ruoxin',
+  isLoggedIn,
+  async (req, res, next) => {
+      res.render('../views/games/gameruoxin')
+});
+
 router.get('/siyu',
   isLoggedIn,
   async (req, res, next) => {
