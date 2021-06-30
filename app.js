@@ -11,12 +11,20 @@ const layouts = require("express-ejs-layouts");
 
 const mongoose = require( 'mongoose' );
 //mongoose.connect( `mongodb+srv://${auth.atlasAuth.username}:${auth.atlasAuth.password}@cluster0-yjamu.mongodb.net/authdemo?retryWrites=true&w=majority`);
+
 //mongoose.connect('mongodb+srv://Yi-ZheHong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 // mongoose.connect('mongodb+srv://WenxuanJin:JWX12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+//mongoose.connect('mongodb+srv://siyuyang:siyu20010216@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+// mongoose.connect('mongodb+srv://kenxiong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+//mongoose.connect( 'mongodb://localhost/authDemo');
+
 // mongoose.connect('mongodb+srv://siyuyang:siyu20010216@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 // mongoose.connect('mongodb+srv://kenxiong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
-mongoose.connect( 'mongodb+srv://ruoxinyang:yrx382398@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
-//mongoose.connect( 'mongodb://localhost/authDemo');
+// mongoose.connect( 'mongodb://localhost/authDemo');
+mongoose.connect('mongodb+srv://WenxuanJin:JWX12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+//mongoose.connect('mongodb+srv://Yi-ZheHong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+// mongoose.connect('mongodb+srv://WenxuanJin:JWX12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+// mongoose.connect( 'mongodb://localhost/authDemo');
 
 
 const db = mongoose.connection;
@@ -272,6 +280,11 @@ if(loseWeight=="balance"){
 return need.balance;
 }
 }
+function bmi(BMI){
+  if(BMI<18.5){
+      return "You are underweight:(";
+  }
+}
 
 app.get("/list", async (req,res,next) => {
   res.render('list')
@@ -284,10 +297,12 @@ app.post("/list",
   async (req,res,next) => {
     const amount= req.body.amount
     const key = req.body.key
+    const calories = req.body.calories
     const doc = new List({
       userId:req.user._id,
       amount:amount,
-      key:key
+      key:key,
+      calories:calories
     })
     const result = await doc.save()
     console.log('result=')

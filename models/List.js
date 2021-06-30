@@ -7,6 +7,7 @@ var listSchema = Schema( {
   userId: ObjectId,
   key: String,
   amount: String,
+  calories:String,
 } );
 
 module.exports = mongoose.model( 'List', listSchema );

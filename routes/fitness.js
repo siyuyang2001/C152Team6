@@ -73,7 +73,7 @@ router.get('/abs',
 router.get('/recordF',
   isLoggedIn,
   async (req, res, next) => {
-      res.render('../views/exercise/record')
+      res.render('../views/exercise/smallG')
 });
 router.get('/CalBMR',
   isLoggedIn,
@@ -151,7 +151,7 @@ router.post('/CalBMR',
       const height = req.body.age
       const weight = req.body.weight
 
-      
+
       res.render('../views/exercise/BMRresult')
 });
 
