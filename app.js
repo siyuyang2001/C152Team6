@@ -118,7 +118,7 @@ const Team = require('./models/Team')
 app.get('/team',
   isLoggedIn,
   async (req, res, next) => {
-      res.locals.teams = await Team.find({ownerid:req.user._id})
+      res.locals.players = await Team.find({ownerid:req.user._id})
       res.render('team');
 });
 
@@ -128,13 +128,21 @@ app.post('/team',
       const salary = parseInt(req.body.salary)
       const name = req.body.name
       const position = req.body.position
-      const team = new Walkinglog(
+      const team = new Team(
         {name:name,
          salary:salary,
          position:position,
          ownerid: req.user._id
         })
       await team.save();
+      res.redirect('/team')
+});
+
+app.get('/team/remove/:itemId',
+  isLoggedIn,
+  async (req, res, next) => {
+      console.log("inside /team/remove/:itemId")
+      await Team.remove({_id:req.params.itemId});
       res.redirect('/team')
 });
 
