@@ -141,18 +141,18 @@ function check(inn,outt,valuee){
   if(inn=='second'&&outt=='second') return valuee
   if(inn=='second'&&outt=='minute') return valuee/60
   if(inn=='second'&&outt=='hour') return valuee/3600
-  if(inn=='second'&&outt=='day') return valuee/3600/60
+  if(inn=='second'&&outt=='day') return valuee/3600/24
   if(inn=='minute'&&outt=='second') return valuee*60
   if(inn=='minute'&&outt=='minute') return valuee
   if(inn=='minute'&&outt=='hour') return valuee/60
-  if(inn=='minute'&&outt=='day') return valuee/3600
+  if(inn=='minute'&&outt=='day') return valuee/60/24
   if(inn=='hour'&&outt=='second') return 3600*value
   if(inn=='hour'&&outt=='minute') return valuee*60
   if(inn=='hour'&&outt=='hour') return valuee
-  if(inn=='hour'&&outt=='day') return valuee/60
-  if(inn=='day'&&outt=='second') return 3600*60*valuee
-  if(inn=='day'&&outt=='minute') return 3600**valuee
-  if(inn=='day'&&outt=='hour') return 60*valuee
+  if(inn=='hour'&&outt=='day') return valuee/24
+  if(inn=='day'&&outt=='second') return 3600*24*valuee
+  if(inn=='day'&&outt=='minute') return 60*24*valuee
+  if(inn=='day'&&outt=='hour') return 24*valuee
   if(inn=='day'&&outt=='day') return valuee
 
   if(inn=='cm'&&outt=='cm') return valuee
