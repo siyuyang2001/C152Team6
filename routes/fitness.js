@@ -80,6 +80,18 @@ router.get('/CalBMR',
   async (req, res, next) => {
       res.render('../views/exercise/BMRresult')
 });
+router.get('/delete',
+  isLoggedIn,
+  async (req,res,next) => {
+      // delete the minor from the collection of minors
+      try{
+      await Exercise.remove();
+        }
+      catch(e){
+        next(e)
+      }
+      res.redirect('/')
+})
 //
 // router.get('/:minorId',
 //   isLoggedIn,

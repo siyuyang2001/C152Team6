@@ -33,46 +33,30 @@ Short Description of <%= l.exercise%>
       <br>
                   <% }) %>
    <form method="post" action="/fitness/add_exercise">
-     <select name="part" id="part">
-      <option value="abs">
-     Abs
-        </option>
-       </select><br>
-       name of the exercise: <input type="text" name="exercise"><br>
-       <select name="choose" id="choose">
-        <option value="link">
-        URL_link
-          </option>
-          <option value="local">
-          Select image from your computer
-            </option>
-         </select><br>
-           URL_link : <input type="text" name="URL"><br>
-
-        <br>Select Pictures from your computer<br>
-        <input name = "img" type='file' onchange="readURL(this);" />
-          <img id="blah" src="#" alt="your image" />
-          <script>
-            function readURL(input) {
-                 if (input.files && input.files[0]) {
-                     var reader = new FileReader();
-
-                     reader.onload = function (e) {
-                         $('#blah')
-                             .attr('src', e.target.result)
-                             .width(550)
-                             .height(600);
-                     };
-
-                     reader.readAsDataURL(input.files[0]);
-                 }
-             }
-        </script>
-<br>
-       short_description of this exercise:
-       <input type="text" name="shortDescription"><br>
-
-       <input type="submit" value="add this exercise">
-   </form>
+  <div class="row mb-3">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Name of The Exercise:</label>
+    <div class="col-sm-10">
+      <input type="text" name="exercise" class="form-control" id="inputEmail3">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">URL_link</label>
+    <div class="col-sm-10">
+      <input type="text" name="URL" class="form-control" id="inputPassword3">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="inputPassword2" class="col-sm-2 col-form-label">Short_Description of this Exercise:</label>
+    <div class="col-sm-10">
+      <input type="text" name="shortDescription"class="form-control" id="inputPassword2">
+    </div>
+  </div>
+  <select name="part" id="part">
+   <option value="abs">
+  Abs
+     </option>
+    </select><br>
+  <button type="submit" class="btn btn-primary">Add This Exercise</button>
+</form>
 
   <%- include('bootfooter') -%>
