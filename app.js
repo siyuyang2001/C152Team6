@@ -319,6 +319,10 @@ app.get('/aboutWenxuan',
     (req,res) => {
           res.render('aboutSiyu')
             })
+    app.get('/aboutruoxin',
+    (req,res) => {
+          res.render('aboutruoxin')
+            })
 
 
 app.use('/data',(req,res) => {
