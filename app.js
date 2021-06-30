@@ -103,6 +103,27 @@ app.get('/testing',
 app.get('/testing2',(req,res) => {
   res.render('testing2')
 })
+
+app.get("/units", (request,response) => {
+  response.render("units")
+})
+
+app.post('/units', (req,res) => {
+  const a = parseFloat(req.body.a) // converts form parameter from string to float
+  const b = parseFloat(req.body.b)
+  const c = parseFloat(req.body.c)
+  const s = (a+b+c)/2
+  const area = Math.sqrt(s*(s-a)*(s-b)*(s-c))
+  res.locals.a = a
+  res.locals.b = b
+  res.locals.c = c
+  res.locals.area = area
+  //res.json({'area':area,'s':s})
+  res.render('showTriangleArea')
+})
+
+
+
 app.get('/Sports',(req,res) => {
   res.render('Sports')
 })
