@@ -354,6 +354,11 @@ app.get('/aboutKenXiong',
       res.render('aboutKenXiong')
     })
 
+    app.get('/aboutruoxin',
+        (req,res) => {
+          res.render('aboutruoxin')
+        })
+
 app.use('/data',(req,res) => {
   res.json([{a:1,b:2},{a:5,b:3}]);
 })
