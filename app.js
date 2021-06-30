@@ -11,12 +11,20 @@ const layouts = require("express-ejs-layouts");
 
 const mongoose = require( 'mongoose' );
 //mongoose.connect( `mongodb+srv://${auth.atlasAuth.username}:${auth.atlasAuth.password}@cluster0-yjamu.mongodb.net/authdemo?retryWrites=true&w=majority`);
+
 //mongoose.connect('mongodb+srv://Yi-ZheHong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 // mongoose.connect('mongodb+srv://WenxuanJin:JWX12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+//mongoose.connect('mongodb+srv://siyuyang:siyu20010216@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+// mongoose.connect('mongodb+srv://kenxiong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+//mongoose.connect( 'mongodb://localhost/authDemo');
+
 // mongoose.connect('mongodb+srv://siyuyang:siyu20010216@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 // mongoose.connect('mongodb+srv://kenxiong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
-mongoose.connect( 'mongodb+srv://ruoxinyang:yrx382398@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
-//mongoose.connect( 'mongodb://localhost/authDemo');
+// mongoose.connect( 'mongodb://localhost/authDemo');
+mongoose.connect('mongodb+srv://WenxuanJin:JWX12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+//mongoose.connect('mongodb+srv://Yi-ZheHong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+// mongoose.connect('mongodb+srv://WenxuanJin:JWX12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+// mongoose.connect( 'mongodb://localhost/authDemo');
 
 
 const db = mongoose.connection;
@@ -35,6 +43,7 @@ const toDoAjaxRouter = require('./routes/todoAjax');
 const connectRouter = require('./routes/connect');
 const yourExRouter = require('./routes/yourEx');
 const fitnessRouter = require('./routes/fitness');
+const gamesRouter = require('./routes/games');
 
 
 
@@ -65,6 +74,7 @@ app.use('/connectWithMe',connectRouter);
 app.use('/result',connectRouter);
 app.use('/yourEx',yourExRouter);
 app.use('/suggestionBox',yourExRouter);
+app.use('/games',gamesRouter);
 
 const myLogger = (req,res,next) => {
   console.log('inside a route!')
@@ -252,6 +262,7 @@ app.get('/profiles',
       res.locals.BMI=BMI
       res.locals.TDEE=TDEE
       res.locals.BMR=BMR
+      res.locals.advice=bmi(BMI)
     res.render('formView')
   })
 
@@ -272,6 +283,23 @@ if(loseWeight=="balance"){
 return need.balance;
 }
 }
+function bmi(BMI){
+  if(BMI<18.5){
+      return "You are underweight:(";
+  }
+  if(BMI>18.5&&BMI<24.9){
+    return "You are perfectly fit!";
+  }
+  if(BMI>25&&BMI<29.9){
+    return "You are a littlt bit overweight";
+  }
+  if(BMI>30&&BMI<34.9){
+    return "You are in the obese line:(";
+  }
+  if(BMI>35){
+    return "You should consider lose some weight:(";
+  }
+}
 
 app.get("/list", async (req,res,next) => {
   res.render('list')
@@ -284,10 +312,12 @@ app.post("/list",
   async (req,res,next) => {
     const amount= req.body.amount
     const key = req.body.key
+    const calories = req.body.calories
     const doc = new List({
       userId:req.user._id,
       amount:amount,
-      key:key
+      key:key,
+      calories:calories
     })
     const result = await doc.save()
     console.log('result=')
@@ -319,11 +349,15 @@ app.get('/aboutWenxuan',
     (req,res) => {
           res.render('aboutSiyu')
             })
-    app.get('/aboutruoxin',
+app.get('/aboutKenXiong',
     (req,res) => {
-          res.render('aboutruoxin')
-            })
+      res.render('aboutKenXiong')
+    })
 
+    app.get('/aboutruoxin',
+        (req,res) => {
+          res.render('aboutruoxin')
+        })
 
 app.use('/data',(req,res) => {
   res.json([{a:1,b:2},{a:5,b:3}]);
