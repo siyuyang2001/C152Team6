@@ -114,6 +114,30 @@ app.get('/testing2',(req,res) => {
   res.render('testing2')
 })
 
+const Team = require('./models/Team')
+app.get('/team',
+  isLoggedIn,
+  async (req, res, next) => {
+      res.locals.teams = await Team.find({ownerid:req.user._id})
+      res.render('team');
+});
+
+app.post('/team',
+  isLoggedIn,
+  async (req, res, next) => {
+      const salary = parseInt(req.body.salary)
+      const name = req.body.name
+      const position = req.body.position
+      const team = new Walkinglog(
+        {name:name,
+         salary:salary,
+         position:position,
+         ownerid: req.user._id
+        })
+      await team.save();
+      res.redirect('/team')
+});
+
 app.get("/units", (request,response) => {
   response.render("units")
 })
