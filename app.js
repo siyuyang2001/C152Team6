@@ -11,11 +11,11 @@ const layouts = require("express-ejs-layouts");
 
 const mongoose = require( 'mongoose' );
 //mongoose.connect( `mongodb+srv://${auth.atlasAuth.username}:${auth.atlasAuth.password}@cluster0-yjamu.mongodb.net/authdemo?retryWrites=true&w=majority`);
-mongoose.connect('mongodb+srv://Yi-ZheHong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+//mongoose.connect('mongodb+srv://Yi-ZheHong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 // mongoose.connect('mongodb+srv://WenxuanJin:JWX12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 // mongoose.connect('mongodb+srv://siyuyang:siyu20010216@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 // mongoose.connect('mongodb+srv://kenxiong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
-//mongoose.connect( 'mongodb+srv://ruoxinyang:yrx382398@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+mongoose.connect( 'mongodb+srv://ruoxinyang:yrx382398@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 //mongoose.connect( 'mongodb://localhost/authDemo');
 
 
@@ -109,20 +109,69 @@ app.get("/units", (request,response) => {
 })
 
 app.post('/units', (req,res) => {
-  const a = parseFloat(req.body.a) // converts form parameter from string to float
-  const b = parseFloat(req.body.b)
-  const c = parseFloat(req.body.c)
-  const s = (a+b+c)/2
-  const area = Math.sqrt(s*(s-a)*(s-b)*(s-c))
-  res.locals.a = a
-  res.locals.b = b
-  res.locals.c = c
-  res.locals.area = area
+  const inn =  req.body.in
+  const outt = req.body.out
+  const valuee = req.body.value
+  res.locals.inn = inn
+  res.locals.outt = outt
+  res.locals.valuee= valuee
+  res.locals.resultt=check(inn,outt,valuee)
   //res.json({'area':area,'s':s})
-  res.render('showTriangleArea')
+  res.render('showunits')
 })
 
+function check(inn,outt,valuee){
+  if(inn=='g'&&outt=='kg') return valuee/1000
+  if(inn=='g'&&outt=='pound') return 0.0022*valuee
+  if(inn=='g'&&outt=='ounce') return 0.0353*valuee
+  if(inn=='g'&&outt=='g') return valuee
+  if(inn=='kg'&&outt=='kg') return valuee
+  if(inn=='kg'&&outt=='g') return 1000*valuee
+  if(inn=='kg'&&outt=='pound') return 2.2*valuee
+  if(inn=='kg'&&outt=='ounce') return 35.27*valuee
+  if(inn=='pound'&&outt=='kg') return 0.454*value
+  if(inn=='pound'&&outt=='pound') return valuee
+  if(inn=='pound'&&outt=='ounce') return 16*valuee
+  if(inn=='pound'&&outt=='g') return 454*valuee
+  if(inn=='ounce'&&outt=='kg') return 0.02835*valuee
+  if(inn=='ounce'&&outt=='g') return 28.35*valuee
+  if(inn=='ounce'&&outt=='pound') return 0.0625*valuee
+  if(inn=='ounce'&&outt=='ounce') return valuee
 
+  if(inn=='g'&&outt=='kg') return valuee/1000
+  if(inn=='g'&&outt=='pound') return 0.0022*valuee
+  if(inn=='g'&&outt=='ounce') return 0.0353*valuee
+  if(inn=='g'&&outt=='g') return valuee
+  if(inn=='kg'&&outt=='kg') return valuee
+  if(inn=='kg'&&outt=='g') return 1000*valuee
+  if(inn=='kg'&&outt=='pound') return 2.2*valuee
+  if(inn=='kg'&&outt=='ounce') return 35.27*valuee
+  if(inn=='pound'&&outt=='kg') return 0.454*value
+  if(inn=='pound'&&outt=='pound') return valuee
+  if(inn=='pound'&&outt=='ounce') return 16*valuee
+  if(inn=='pound'&&outt=='g') return 454*valuee
+  if(inn=='ounce'&&outt=='kg') return 0.02835*valuee
+  if(inn=='ounce'&&outt=='g') return 28.35*valuee
+  if(inn=='ounce'&&outt=='pound') return 0.0625*valuee
+  if(inn=='ounce'&&outt=='ounce') return valuee
+
+  if(inn=='g'&&outt=='kg') return valuee/1000
+  if(inn=='g'&&outt=='pound') return 0.0022*valuee
+  if(inn=='g'&&outt=='ounce') return 0.0353*valuee
+  if(inn=='g'&&outt=='g') return valuee
+  if(inn=='kg'&&outt=='kg') return valuee
+  if(inn=='kg'&&outt=='g') return 1000*valuee
+  if(inn=='kg'&&outt=='pound') return 2.2*valuee
+  if(inn=='kg'&&outt=='ounce') return 35.27*valuee
+  if(inn=='pound'&&outt=='kg') return 0.454*value
+  if(inn=='pound'&&outt=='pound') return valuee
+  if(inn=='pound'&&outt=='ounce') return 16*valuee
+  if(inn=='pound'&&outt=='g') return 454*valuee
+  if(inn=='ounce'&&outt=='kg') return 0.02835*valuee
+  if(inn=='ounce'&&outt=='g') return 28.35*valuee
+  if(inn=='ounce'&&outt=='pound') return 0.0625*valuee
+  if(inn=='ounce'&&outt=='ounce') return valuee
+}
 
 app.get('/Sports',(req,res) => {
   res.render('Sports')
