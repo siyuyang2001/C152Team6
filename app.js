@@ -260,6 +260,7 @@ app.get('/profiles',
       res.locals.BMI=BMI
       res.locals.TDEE=TDEE
       res.locals.BMR=BMR
+      res.locals.advice=bmi(BMI)
     res.render('formView')
   })
 
@@ -283,6 +284,18 @@ return need.balance;
 function bmi(BMI){
   if(BMI<18.5){
       return "You are underweight:(";
+  }
+  if(BMI>18.5&&BMI<24.9){
+    return "You are perfectly fit!";
+  }
+  if(BMI>25&&BMI<29.9){
+    return "You are a littlt bit overweight";
+  }
+  if(BMI>30&&BMI<34.9){
+    return "You are in the obese line:(";
+  }
+  if(BMI>35){
+    return "You should consider lose some weight:(";
   }
 }
 
@@ -334,7 +347,10 @@ app.get('/aboutWenxuan',
     (req,res) => {
           res.render('aboutSiyu')
             })
-
+app.get('/aboutKenXiong',
+    (req,res) => {
+      res.render('aboutKenXiong')
+    })
 
 app.use('/data',(req,res) => {
   res.json([{a:1,b:2},{a:5,b:3}]);
