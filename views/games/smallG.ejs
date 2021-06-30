@@ -70,11 +70,18 @@ function collisionDetection() {
           score++;
           if(score == brickRowCount*brickColumnCount) {
             alert("YOU WIN, CONGRATS!");
+            document.location.reload();
           }
         }
       }
     }
   }
+}
+function myFunction() {
+  location.href = "http://localhost:5000/games/pingpong";
+}
+function myFunction1() {
+  location.href = "http://localhost:5000/games/refForm";
 }
 
 function drawBall() {
@@ -142,6 +149,7 @@ function draw() {
       lives--;
       if(!lives) {
         alert("GAME OVER");
+        document.location.reload();
       }
       else {
         x = canvas.width/2;
@@ -167,23 +175,6 @@ function draw() {
 
 draw();
 </script>
-
-<form method="post" action="/games/refForm">
-  <select name="gamename" id="gamename">
-   <option value="PPG">
-  Ping_Pong_Game
-     </option>
-    </select><br>
-    <select name="yDiff" id="yDiff">
-     <option value="easy">
-    Easy
-       </option>
-       <option value="mild">
-      Mild
-         </option>
-         <option value="hard">
-        Hard
-           </option>
-      </select><br>
-    <input type="submit" value="start the game!">
-</form>
+<br>
+<button onclick="myFunction()">Restart!!!</button>
+<button onclick="myFunction1()">Leave some Comments</button>

@@ -236,6 +236,12 @@ function Bomb(row, col, size, owner) {
     context.stroke();
   };
 }
+function myFunction() {
+  document.location.reload()
+}
+function myFunction1() {
+  location.href = "http://localhost:5000/games/refForm";
+}
 
 // explosion constructor function
 function Explosion(row, col, dir, center) {
@@ -396,5 +402,7 @@ document.addEventListener('keydown', function(e) {
 generateLevel();
 requestAnimationFrame(loop);
 </script>
+<button onclick="myFunction()">Restart!!!</button>
+<button onclick="myFunction1()">Leave some Comments</button>
 </body>
 </html>
