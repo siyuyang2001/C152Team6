@@ -38,18 +38,19 @@ router.get('/',
 router.get('/pingpong',
   isLoggedIn,
   async (req, res, next) => {
-      res.locals.l = await Exercise.find({part:'chest',userId:req.user._id})
-      console.log(res.locals.l)
       res.render('../views/games/smallG')
 });
 
 
-router.get('/smallm',
+router.get('/wenxuan',
   isLoggedIn,
   async (req, res, next) => {
-    res.locals.l = await Exercise.find({part:'smallm',userId:req.user._id})
-    console.log(res.locals.l)
-      res.render('../views/exercise/smallM')
+      res.render('../views/games/gameWenxuan')
+});
+router.get('/siyu',
+  isLoggedIn,
+  async (req, res, next) => {
+      res.render('../views/games/bomber')
 });
 router.get('/refForm',
   isLoggedIn,
