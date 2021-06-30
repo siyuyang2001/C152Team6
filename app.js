@@ -11,6 +11,7 @@ const layouts = require("express-ejs-layouts");
 
 const mongoose = require( 'mongoose' );
 //mongoose.connect( `mongodb+srv://${auth.atlasAuth.username}:${auth.atlasAuth.password}@cluster0-yjamu.mongodb.net/authdemo?retryWrites=true&w=majority`);
+<<<<<<< Updated upstream
 //mongoose.connect('mongodb+srv://Yi-ZheHong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 // mongoose.connect('mongodb+srv://WenxuanJin:JWX12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 // mongoose.connect('mongodb+srv://siyuyang:siyu20010216@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
@@ -24,6 +25,13 @@ mongoose.connect('mongodb+srv://Yi-ZheHong:12345@authdemo.xlova.mongodb.net/myFi
 // mongoose.connect('mongodb+srv://WenxuanJin:JWX12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 // mongoose.connect( 'mongodb://localhost/authDemo');
 
+=======
+mongoose.connect('mongodb+srv://Yi-ZheHong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+// mongoose.connect('mongodb+srv://WenxuanJin:JWX12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+//mongoose.connect('mongodb+srv://siyuyang:siyu20010216@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+// mongoose.connect('mongodb+srv://kenxiong:12345@authdemo.xlova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+//mongoose.connect( 'mongodb://localhost/authDemo');
+>>>>>>> Stashed changes
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -167,66 +175,46 @@ app.get('/profiles',
     const weight = parseInt(req.body.weight)
     const height=parseInt(req.body.height)
     const loseWeight=req.body.loseWeight
+    const activity=req.body.activity
     const gender=req.body.gender
 
-    res.locals.fullname=fullname
-    res.locals.age = age
-    res.locals.weight =weight
-    res.locals.height= height
-    res.locals.gender=gender
-    res.locals.loseWeight= loseWeight
-    res.locals.calories=calories(age,gender,loseWeight)
+    const fitnessCalculatorFunctions = require("fitness-calculator");
+      const BMI= fitnessCalculatorFunctions.BMI(height,weight);
+      const TDEE= fitnessCalculatorFunctions.TDEE(gender,age,height,weight,activity);
+      const BMR = fitnessCalculatorFunctions.BMR(gender,age,height,weight);
+      const need= fitnessCalculatorFunctions.calorieNeeds(gender,age,height,weight,activity);
+
+      res.locals.fullname=fullname
+      res.locals.age = age
+      res.locals.weight =weight
+      res.locals.height= height
+      res.locals.gender=gender
+      res.locals.loseWeight= loseWeight
+      res.locals.activity= activity
+      res.locals.need=calories(need,loseWeight)
+      res.locals.BMI=BMI
+      res.locals.TDEE=TDEE
+      res.locals.BMR=BMR
     res.render('formView')
   })
-  function calories(age,gender,loseWeight){
-    if(loseWeight=="no"){
-    if(age>1&&age<4)
-    return "1000";
-    if(age>3&&age<9)
-    return "1400-1600";
-    if(age<14 &&age>8 && gender=="female")
-    return "1600-2000";
-    if(age<14 &&age>8 && gender=="male")
-    return "1800-2200";
-    if(age<19 &&age>13 && gender=="female")
-    return "2000";
-    if(age<19 &&age>13 && gender=="male")
-    return "2400--2800";
-    if(age<31 &&age>18 &&gender=="female")
-    return "2000--2200";
-    if(age<31 &&age>18 &&gender=="male")
-    return "2600--2800";
-    if(age<51 &&age>30 && gender=="female")
-    return "2000";
-    if(age<51 &&age>30 &&gender=="male")
-    return "2400-2600";
-    if(age>50)
-    return "around 2000";
+
+  function calories(need,loseWeight){
+    if(loseWeight=="mildWeightLoss"){
+    return need.mildWeightLoss;
   }
-  if(loseWeight=="yes"){
-  if(age>1&&age<4)
-  return "1000";
-  if(age>3&&age<9)
-  return "1200";
-  if(age<14 &&age>8 && gender=="female")
-  return "1600";
-  if(age<14 &&age>8 && gender=="male")
-  return "1800";
-  if(age<19 &&age>13 && gender=="female")
-  return "1800";
-  if(age<19 &&age>13 && gender=="male")
-  return "2000";
-  if(age<31 &&age>18 &&gender=="female")
-  return "2000";
-  if(age<31 &&age>18 &&gender=="male")
-  return "2400";
-  if(age<51 &&age>30 && gender=="female")
-  return "1800";
-  if(age<51 &&age>30 &&gender=="male")
-  return "2200";
-  if(age>50)
-  return "around 2000";
-  }}
+  if(loseWeight=="heavyWeightLoss"){
+  return need.heavyWeightLoss;
+}
+if(loseWeight=="mildWeightGain"){
+return need.mildWeightGain;
+}
+if(loseWeight=="heavyWeightGain"){
+return need.heavyWeightGain;
+}
+if(loseWeight=="balance"){
+return need.balance;
+}
+}
 
 app.get("/list", async (req,res,next) => {
   res.render('list')
