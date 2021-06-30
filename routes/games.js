@@ -27,7 +27,7 @@ isLoggedIn = (req,res,next) => {
 router.get('/',
   isLoggedIn,
   async (req, res, next) => {
-      res.render('../views/exercise/fitness')
+      res.render('../views/games/gameMenu')
 });
 
 
@@ -42,20 +42,8 @@ router.get('/pingpong',
       console.log(res.locals.l)
       res.render('../views/games/smallG')
 });
-router.get('/legs',
-  isLoggedIn,
-  async (req, res, next) => {
-    res.locals.l = await Exercise.find({part:'legs',userId:req.user._id})
-    console.log(res.locals.l)
-      res.render('../views/exercise/legs')
-});
-router.get('/back',
-  isLoggedIn,
-  async (req, res, next) => {
-    res.locals.l = await Exercise.find({part:'back',userId:req.user._id})
-    console.log(res.locals.l)
-      res.render('../views/exercise/back')
-});
+
+
 router.get('/smallm',
   isLoggedIn,
   async (req, res, next) => {
@@ -63,12 +51,12 @@ router.get('/smallm',
     console.log(res.locals.l)
       res.render('../views/exercise/smallM')
 });
-router.get('/abs',
+router.get('/refForm',
   isLoggedIn,
   async (req, res, next) => {
     res.locals.l = await Exercise.find({part:'abs',userId:req.user._id})
     // console.log(res.locals.l)
-      res.render('../views/exercise/abs')
+      res.render('../views/games/reflectionForm')
 });
 router.get('/recordF',
   isLoggedIn,
