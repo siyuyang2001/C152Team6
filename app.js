@@ -158,13 +158,13 @@ function check(inn,outt,valuee){
   if(inn=='cm'&&outt=='cm') return valuee
   if(inn=='cm'&&outt=='m') valuee/100
   if(inn=='cm'&&outt=='inch') return 0.394*valuee
-  if(inn=='cm'&&outt=='foot') return 0.0328valuee
+  if(inn=='cm'&&outt=='foot') return 0.0328*valuee
   if(inn=='m'&&outt=='cm') return valuee*100
   if(inn=='m'&&outt=='m') return valuee
   if(inn=='m'&&outt=='inch') return 39.4*valuee
   if(inn=='m'&&outt=='foot') return 3.28*valuee
   if(inn=='inch'&&outt=='cm') return 2.54*value
-  if(inn=='inch'&&outt=='m') return 0.0254valuee
+  if(inn=='inch'&&outt=='m') return 0.0254*valuee
   if(inn=='inch'&&outt=='inch') return valuee
   if(inn=='inch'&&outt=='foot') return 0.083*valuee
   if(inn=='foot'&&outt=='cm') return 30.48*valuee
