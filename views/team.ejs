@@ -1,8 +1,12 @@
+<%- include('bootheader') -%>
+<%- include('menubar') -%>
 <div class="jumbotron">
 <h1><%=user.googlename%>'s Basketball Team</h1>
 <h2>Hire/Dismiss new member</h2>
 </div>
-
+<div class="alert alert-info" role="alert">
+  Enter the player you want to hire.
+</div>
       <form method="post" action="/team">
           Name:       <input type="text" name="name" size='60'><br>
           Position: <input type="text" name="position" size='58'><br>
@@ -27,7 +31,7 @@
 
 
 
-      <h2> Your team members:</h2>
+      <br><br><h2> Your team members:</h2>
       <table class="table table-bordered table-striped">
               <thead>
                 <tr>
@@ -117,3 +121,5 @@
 
               </body>
               </html>
+
+<%- include('bootfooter') -%>

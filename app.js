@@ -173,7 +173,7 @@ function check(inn,outt,valuee){
   if(inn=='kg'&&outt=='g') return 1000*valuee
   if(inn=='kg'&&outt=='pound') return 2.2*valuee
   if(inn=='kg'&&outt=='ounce') return 35.27*valuee
-  if(inn=='pound'&&outt=='kg') return 0.454*value
+  if(inn=='pound'&&outt=='kg') return 0.454*valuee
   if(inn=='pound'&&outt=='pound') return valuee
   if(inn=='pound'&&outt=='ounce') return 16*valuee
   if(inn=='pound'&&outt=='g') return 454*valuee
