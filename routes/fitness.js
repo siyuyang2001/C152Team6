@@ -4,6 +4,7 @@
 const express = require('express');
 const router = express.Router();
 const Exercise = require('../models/Exercise')
+const fetch = require('node-fetch');
 
 
 
@@ -70,6 +71,61 @@ router.get('/abs',
     // console.log(res.locals.l)
       res.render('../views/exercise/abs')
 });
+router.get('/carFinder',
+  isLoggedIn,
+  async (req, res, next) => {
+    res.render("../views/exercise/carFinder");
+});
+
+router.post('/getinfo',
+  isLoggedIn,
+  async (req, res, next) => {
+    const cate = req.body.Category
+  const make = req.body.Make
+  const year = parseFloat(req.body.Year)
+  const num = req.body.num
+
+  const where = encodeURIComponent(JSON.stringify({
+          "Year": {
+            "$gt": year
+          },
+          "Category": cate
+        }));
+        const response = await fetch(
+          `https://parseapi.back4app.com/classes/Car_Model_List_`+make+`?limit=`+num+`&order=Year&where=${where}`,
+          {
+            headers: {
+              'X-Parse-Application-Id': 'hlhoNKjOvEhqzcVAJ1lxjicJLZNVv36GdbboZj3Z', // This is the fake app's application id
+              'X-Parse-Master-Key': 'SNMJJF0CZZhTPhLDIqGhTlUNV9r60M2Z5spyWfXW', // This is the fake app's readonly master key
+            }
+          }
+        );
+        const data = await response.json(); // Here you have the data that you need
+        console.log(JSON.stringify(data, null, 2));
+        res.locals.y = year
+        res.locals.c = cate
+        res.locals.results = data.results
+        res.locals.pic = CarP(make)
+
+      res.render('../views/exercise/getinfo')
+});
+function CarP(make){
+  if (make == "MAZDA"){
+    return "https://i.pinimg.com/originals/07/28/bc/0728bc21e95d7bca750274f2853c1b43.jpg"
+  }
+  if (make == "Toyota"){
+   return "https://cdn.mos.cms.futurecdn.net/WpcTavg99b5XpK6STzSLZ8.jpg"
+  }
+  if (make == "Honda"){
+    return "https://logos-world.net/wp-content/uploads/2021/03/Honda-Logo-2000-present.png"
+  }
+  if (make == "Nissan"){
+    return "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/nissan-brand-logo-1200x938-1594842850.jpg?crop=1.00xw:0.856xh;0.00173xw,0.0730xh&resize=480:*"
+  }
+  if (make == "Subaru"){
+    return "https://svgprinted.com/wp-content/uploads/2020/04/Subaru.jpg"
+  }
+}
 
 router.post('/delete',
   isLoggedIn,
