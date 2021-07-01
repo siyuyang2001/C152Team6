@@ -1,48 +1,59 @@
 <%- include('bootheader') -%>
+<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+<meta charset=utf-8 />
 <style>
   article, aside, figure, footer, header, hgroup,
-  menu, nav, section { display: block; },
+  menu, nav, section { display: block; }
 </style>
+  <h1> Be Healthy!!!</h1> <span class="badge bg-secondary">Work On Chest</span></h1>
 
-<h1>
-Chest Page! Be Healthy
-   </h1>
    <% l.forEach(l => { %>
-     <div class="row" style="background-color:#f0ffff;">
-       <div class="col">
-         <p>
-Image of <%= l.exercise%>
-           </p><br>
-           <img src=<%= l.urlLink%> >
-         </div>
-
-         <div class="col"style="background-color:#fff0f0;">
-           <p>
-Short Description of <%= l.exercise%>
-             </p>
-
-             <p>
-<%= l.shortDescription%>
-               </p>
+     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+       <div class="carousel-inner">
+         <div class="carousel-item active">
+           <img src=<%= l.urlLink %> class="d-block w-100" alt="...">
+           <div class="carousel-caption d-none d-md-block">
+             <h5><%= l.exercise %></h5>
+             <p><%= l.shortDescription %></p>
            </div>
-      </div>
-      <br>
+         </div>
+       </div>
+     </div>
                   <% }) %>
-
-<div class="alert alert-success" role="alert">
-  This is a success alert—check it out!
-</div>
    <form method="post" action="/fitness/add_exercise">
-     <select name="part" id="part">
-      <option value="chest">
-     chest
-        </option>
-       </select><br>
-       name of the exercise: <input type="text" name="exercise"><br>
-       URL_link : <input type="text" name="URL"><br>
-       short_description of this exercise: <input type="text" name="shortDescription"><br>
-       <input type="submit" value="add this exercise">
-   </form>
-
+  <div class="row mb-3">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Name of The Exercise:</label>
+    <div class="col-sm-10">
+      <input type="text" name="exercise" class="form-control" id="inputEmail3">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">URL_link</label>
+    <div class="col-sm-10">
+      <input type="text" name="URL" class="form-control" id="inputPassword3">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="inputPassword2" class="col-sm-2 col-form-label">Short_Description of this Exercise:</label>
+    <div class="col-sm-10">
+      <input type="text" name="shortDescription"class="form-control" id="inputPassword2">
+    </div>
+  </div>
+  <select name="part" id="part">
+   <option value="chest">
+  Chest
+     </option>
+    </select><br>
+  <button type="submit" class="btn btn-outline-info">Add This Exercise</button>
+</form>
+<form method="post" action="/fitness/delete">
+  <select name="part" id="part">
+   <option value="chest">
+     </option>
+    </select><br>
+<button type="submit" class="btn btn-outline-danger">Clear Data</button>
+</form>
 
   <%- include('bootfooter') -%>

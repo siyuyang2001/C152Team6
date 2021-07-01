@@ -1,12 +1,13 @@
 <canvas id="myCanvas" width="950" height="600"></canvas>
+
 <script>
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 var ballRadius = 12;
 var x = canvas.width/2;
 var y = canvas.height-30;
-var dx = 10;
-var dy = -7;
+var dx =  <%=x%>;
+var dy =  <%=y%>;
 var paddleHeight = 10;
 var paddleWidth = 90;
 var paddleX = (canvas.width-paddleWidth)/2;
@@ -20,7 +21,7 @@ var brickPadding = 10;
 var brickOffsetTop = 40;
 var brickOffsetLeft = 40;
 var score = 0;
-var lives = 3;
+var lives = <%=n%>;
 
 var bricks = [];
 for(var c=0; c<brickColumnCount; c++) {
@@ -75,6 +76,12 @@ function collisionDetection() {
       }
     }
   }
+}
+function myFunction() {
+  location.href = "http://localhost:5000/games/pingpong";
+}
+function myFunction1() {
+  location.href = "http://localhost:5000/games/refForm";
 }
 
 function drawBall() {
@@ -147,8 +154,8 @@ function draw() {
       else {
         x = canvas.width/2;
         y = canvas.height-30;
-        dx += 3;
-        dy = -3;
+        dx += 3*<%=z%>;
+        dy -= -3*<%=z%>;
         paddleX = (canvas.width-paddleWidth)/2;
       }
     }
@@ -168,3 +175,6 @@ function draw() {
 
 draw();
 </script>
+<br>
+<button onclick="myFunction()">Restart!!!</button>
+<button onclick="myFunction1()">Leave some Comments</button>

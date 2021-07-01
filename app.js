@@ -233,7 +233,7 @@ app.get('/profiles',
     }
   )
   app.get('/food', (req,res) => {
-    res.render('food')
+    res.render('./health/food')
   })
   function l(data){
     return data.length
@@ -267,7 +267,7 @@ app.get('/profiles',
 
 
   app.get("/form", (request,response) => {
-    response.render("form")
+    response.render("health/form")
   })
 
   app.post('/showformdata', (req,res) => {
@@ -336,7 +336,7 @@ function bmi(BMI){
 }
 
 app.get("/list", async (req,res,next) => {
-  res.render('list')
+  res.render('health/list')
 })
 
 const List = require('./models/List')
@@ -363,7 +363,7 @@ app.get('/lists', isLoggedIn,
   async (req,res,next) => {
     res.locals.lists = await List.find({userId:req.user._id})
     console.log('lists='+JSON.stringify(res.locals.lists.length))
-    res.render('lists')
+    res.render('health/lists')
   })
 
 app.get('/profile',

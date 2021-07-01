@@ -3,7 +3,7 @@
 */
 const express = require('express');
 const router = express.Router();
-const Exercise = require('../models/Exercise')
+const Games = require('../models/Games')
 
 
 
@@ -38,7 +38,7 @@ router.get('/',
 router.get('/pingpong',
   isLoggedIn,
   async (req, res, next) => {
-      res.render('../views/games/smallG')
+      res.render('../views/games/yizheForm')
 });
 
 
@@ -62,31 +62,22 @@ router.get('/siyu',
 router.get('/refForm',
   isLoggedIn,
   async (req, res, next) => {
-    res.locals.l = await Exercise.find({part:'abs',userId:req.user._id})
+    res.locals.g = await Games.find({userId:req.user._id})
     // console.log(res.locals.l)
       res.render('../views/games/reflectionForm')
 });
-router.get('/recordF',
-  isLoggedIn,
-  async (req, res, next) => {
-      res.render('../views/exercise/smallG')
-});
-router.get('/CalBMR',
-  isLoggedIn,
-  async (req, res, next) => {
-      res.render('../views/exercise/BMRresult')
-});
-router.get('/delete',
+
+router.post('/delete',
   isLoggedIn,
   async (req,res,next) => {
       // delete the minor from the collection of minors
       try{
-      await Exercise.remove();
+      await Games.remove();
         }
       catch(e){
         next(e)
       }
-      res.redirect('/')
+      res.redirect('/games/refForm')
 })
 //
 // router.get('/:minorId',
@@ -111,22 +102,81 @@ router.get('/delete',
 
 
 /* add the value in the body to the list associated to the key */
-router.post('/add_exercise',
+router.post('/add_comment',
   isLoggedIn,
   async (req, res, next) => {
-      const ex = new Exercise(
-        {part:req.body.part,
-        exercise: req.body.exercise,
-        urlLink: req.body.URL,
-        localPicture: req.body.img,
+      const c = new Games(
+        {gamename:req.body.gamename,
+        score: req.body.score,
+        date: req.body.date,
         shortDescription: req.body.shortDescription,
         userId: req.user._id
         })
-      await ex.save();
+      await c.save();
       //res.render("todoVerification")
-      console.log(ex)
-      res.redirect('/fitness/'+req.body.part)
+      res.redirect('/games//refForm')
 });
+router.post('/yizheChoosediff',
+  isLoggedIn,
+  async (req, res, next) => {
+    const diff = req.body.yDiff
+    const x = dx(diff)
+    const y = dy(diff)
+    const z = dz(diff)
+    const n = dn(diff)
+
+    res.locals.x = x
+    res.locals.n = n
+    res.locals.z = z
+    res.locals.y = y
+    res.render('../views/games/smallG')
+});
+function dx(diff){
+if (diff == "easy"){
+  return 3;
+}
+if (diff == "mild"){
+return 5;
+}
+if (diff == "hard"){
+  return 10;
+}
+}
+function dz(diff){
+if (diff == "easy"){
+  return 1;
+}
+if (diff == "mild"){
+return 2;
+}
+if (diff == "hard"){
+  return 3;
+}
+}
+function dn(diff){
+if (diff == "easy"){
+  return 3;
+}
+if (diff == "mild"){
+return 2;
+}
+if (diff == "hard"){
+  return 1;
+}
+}
+function dy(diff){
+if (diff == "easy"){
+  return -4;
+}
+if (diff == "mild"){
+return -6;
+}
+if (diff == "hard"){
+  return -10;
+}
+}
+
+
 router.post('/CalBMR',
   isLoggedIn,
   async (req, res, next) => {
