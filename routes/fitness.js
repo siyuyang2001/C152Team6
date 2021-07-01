@@ -70,27 +70,18 @@ router.get('/abs',
     // console.log(res.locals.l)
       res.render('../views/exercise/abs')
 });
-router.get('/recordF',
-  isLoggedIn,
-  async (req, res, next) => {
-      res.render('../views/exercise/smallG')
-});
-router.get('/CalBMR',
-  isLoggedIn,
-  async (req, res, next) => {
-      res.render('../views/exercise/BMRresult')
-});
-router.get('/delete',
+
+router.post('/delete',
   isLoggedIn,
   async (req,res,next) => {
       // delete the minor from the collection of minors
       try{
-      await Exercise.remove();
+      await Exercise.remove({part:req.body.part});
         }
       catch(e){
         next(e)
       }
-      res.redirect('/')
+      res.redirect('/fitness/'+req.body.part)
 })
 //
 // router.get('/:minorId',

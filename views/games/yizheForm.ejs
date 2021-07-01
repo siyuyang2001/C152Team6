@@ -1,8 +1,8 @@
 <%- include('bootheader') -%>
 
-<h1>
-Legs Page! Be Healthy
-   </h1>
+<div class="jumbotron">
+        <h1>Break_Out_Game!!</h1>
+</div>
 
    <form method="post" action="/games/yizheChoosediff">
      <select name="gamename" id="gamename">
@@ -10,6 +10,7 @@ Legs Page! Be Healthy
      Ping_Pong_Game
         </option>
        </select><br>
+       Select the Diffculty of the game!<br>
        <select name="yDiff" id="yDiff">
         <option value="easy">
        Easy
@@ -23,4 +24,13 @@ Legs Page! Be Healthy
          </select><br>
        <input type="submit" value="start the game!">
    </form>
+
+           <div class="col">
+             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdKocVMjnPeN49XnPL9YTJRF0jHduzmFKEWg&usqp=CAU"
+                   width="300">
+                    </div><
+
+
+
+
   <%- include('bootfooter') -%>

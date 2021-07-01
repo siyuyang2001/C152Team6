@@ -7,30 +7,20 @@
   article, aside, figure, footer, header, hgroup,
   menu, nav, section { display: block; }
 </style>
-<div class="badge badge-primary text-wrap" style="width: 6rem;">
-  <h1>Abs Page! Be Healthy
-</h1>
-</div>
+  <h1> Be Healthy!!!</h1> <span class="badge bg-secondary">Work On Abs</span></h1>
+
    <% l.forEach(l => { %>
-     <div class="row bg-warning">
-       <div class="col">
-         <p>
-Image of <%= l.exercise%>
-           </p><br>
-           <img src=<%= l.localPicture%> >
-         </div>
-
-         <div class="col bg-danger">
-           <p>
-Short Description of <%= l.exercise%>
-             </p>
-
-             <p>
-<%= l.shortDescription%>
-               </p>
+     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+       <div class="carousel-inner">
+         <div class="carousel-item active">
+           <img src=<%= l.urlLink %> class="d-block w-100" alt="...">
+           <div class="carousel-caption d-none d-md-block">
+             <h5><%= l.exercise %></h5>
+             <p><%= l.shortDescription %></p>
            </div>
-      </div>
-      <br>
+         </div>
+       </div>
+     </div>
                   <% }) %>
    <form method="post" action="/fitness/add_exercise">
   <div class="row mb-3">
@@ -56,7 +46,14 @@ Short Description of <%= l.exercise%>
   Abs
      </option>
     </select><br>
-  <button type="submit" class="btn btn-primary">Add This Exercise</button>
+  <button type="submit" class="btn btn-outline-info">Add This Exercise</button>
+</form>
+<form method="post" action="/fitness/delete">
+  <select name="part" id="part">
+   <option value="abs">
+     </option>
+    </select><br>
+<button type="submit" class="btn btn-outline-danger">Clear Data</button>
 </form>
 
   <%- include('bootfooter') -%>
