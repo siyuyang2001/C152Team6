@@ -1,0 +1,42 @@
+
+
+    <div class="jumbotron">
+        <h1>Car Info Finder</h1>
+    </div>
+
+
+<form method="post" action="/fitness/getinfo">
+  what Make do you want to search?
+  <select name="Make" id="Make">
+    <optgroup label="Make">
+      <option value="Toyota">Toyota</option>
+      <option value="Honda">Honda</option>
+      <option value="MAZDA">Mazda</option>
+      <option value="Subaru">Subaru</option>
+      <option value="Nissan">Nissan</option>
+
+      </optgroup>
+  </select><br>
+    what Model do you want to search?
+    <select name="Category" id="Category">
+      <optgroup label="Category">
+        <option value="SUV">SUV</option>
+        <option value="Sedan">Sedan</option>
+        <option value="Coupe">Coupe</option>
+        <option value="Pickup">Pickup</option>
+        <option value="Van/Minivan">Van/Minivan</option>
+        <option value="Hatchback">Hatchback</option>
+
+        </optgroup>
+    </select><br>
+    The year of car should be at least greate than
+    <input type="number" name="Year" id = "Year" value=2000><br>
+
+    How many car do you want to find
+    <input type="number" name="num" id="num" value=1><br>
+
+    <input type="submit">
+</form>
+
+
+<%- include('bootfooter') -%>
