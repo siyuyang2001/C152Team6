@@ -7,10 +7,14 @@
           Name:       <input type="text" name="name" size='60'><br>
           Position: <input type="text" name="position" size='58'><br>
           Annual Salary (k):     <input type="text" name="salary" size='50'><br>
+          Information:<br>  <textarea name="information" rows="5" cols="50">
+              </textarea><br>
           <input type="submit" value="Hire">
-      </form>
+      </form><br><br>
 
-
+      <div class="alert alert-info" role="alert">
+        You can dimiss any of your team members.
+      </div>
           <% let total=0
           players.forEach(player => {
           total+=player.salary
@@ -23,7 +27,7 @@
 
 
 
-      <h2> Your team members</h2>
+      <h2> Your team members:</h2>
       <table class="table table-bordered table-striped">
               <thead>
                 <tr>
@@ -48,3 +52,68 @@
                 </tr>
               </tbody>
               </table>
+
+
+
+
+              <!DOCTYPE html>
+              <html>
+              <head>
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <style>
+              .accordion {
+                background-color: #eee;
+                color: #444;
+                cursor: pointer;
+                padding: 18px;
+                width: 100%;
+                border: none;
+                text-align: left;
+                outline: none;
+                font-size: 15px;
+                transition: 0.4s;
+              }
+
+              .active, .accordion:hover {
+                background-color: #ccc;
+              }
+
+              .panel {
+                padding: 0 18px;
+                display: none;
+                background-color: white;
+                overflow: hidden;
+              }
+              </style>
+              </head>
+              <body>
+
+              <h2>Player's information:</h2>
+
+              <% players.forEach(player => { %>
+                <button class="accordion"><%= player.name %>:</button>
+                <div class="panel">
+                  <p><%= player.information %></p>
+                </div><br>
+              <% }) %>
+
+
+              <script>
+              var acc = document.getElementsByClassName("accordion");
+              var i;
+
+              for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                  this.classList.toggle("active");
+                  var panel = this.nextElementSibling;
+                  if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                  } else {
+                    panel.style.display = "block";
+                  }
+                });
+              }
+              </script>
+
+              </body>
+              </html>

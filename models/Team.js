@@ -9,6 +9,7 @@ var teamItemSchema = Schema( {
   name: String,
   position: String,
   salary: Number,
+  information: String,
 
 } );
 

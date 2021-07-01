@@ -128,11 +128,13 @@ app.post('/team',
       const salary = parseInt(req.body.salary)
       const name = req.body.name
       const position = req.body.position
+      const information = req.body.information
       const team = new Team(
         {name:name,
          salary:salary,
          position:position,
-         ownerid: req.user._id
+         ownerid: req.user._id,
+         information:information
         })
       await team.save();
       res.redirect('/team')
