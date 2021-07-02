@@ -192,8 +192,17 @@ function colorCircle(centerX, centerY, radius, drawColor) {
 function colorRect(leftX, topY, width, height, drawColor) {
 	canvasContext.fillStyle = drawColor;
 	canvasContext.fillRect(leftX, topY, width, height);
-}
+	}
+	function myFunction() {
+	  document.location.reload()
+	}
+	function myFunction1() {
+	  location.href = "http://localhost:5000/games/refForm";
+	}
+
 
 </script>
+<button onclick="myFunction()">Restart!!!</button>
+<button onclick="myFunction1()">Leave some Comments</button>
 
 </html>
